@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "google:auth": "node scripts/google-auth.mjs"
+    "lint": "eslint"
   },
   "dependencies": {
     "date-fns": "^4.4.0",

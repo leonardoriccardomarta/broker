@@ -11,9 +11,8 @@ export const bookingConfig = {
 
 export function isGoogleCalendarConfigured(): boolean {
   return Boolean(
-    process.env.GOOGLE_CLIENT_ID &&
-      process.env.GOOGLE_CLIENT_SECRET &&
-      process.env.GOOGLE_REFRESH_TOKEN &&
-      process.env.GOOGLE_CALENDAR_ID,
+    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim() &&
+      process.env.GOOGLE_PRIVATE_KEY?.trim() &&
+      process.env.GOOGLE_CALENDAR_ID?.trim(),
   );
 }

@@ -1,4 +1,3 @@
-import { google } from "googleapis";
 import { bookingConfig } from "@/lib/booking/config";
 import {
   generateSlotsForDate,
@@ -6,24 +5,13 @@ import {
   slotsOverlap,
   type TimeSlot,
 } from "@/lib/booking/slots";
-
-function getOAuthClient() {
-  const clientId = process.env.GOOGLE_CLIENT_ID;
-  const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
-  const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
-
-  if (!clientId || !clientSecret || !refreshToken) {
-    throw new Error("Google Calendar non configurato");
-  }
-
-  const auth = new google.auth.OAuth2(clientId, clientSecret);
-  auth.setCredentials({ refresh_token: refreshToken });
-  return auth;
-}
+import { getCalendarClient } from "@/lib/google/auth";
 
 function getCalendarId(): string {
-  const calendarId = process.env.GOOGLE_CALENDAR_ID;
-  if (!calendarId) throw new Error("GOOGLE_CALENDAR_ID mancante");
+  const calendarId = process.env.GOOGLE_CALENDAR_ID?.trim();
+  if (!calendarId) {
+    throw new Error("GOOGLE_CALENDAR_ID mancante");
+  }
   return calendarId;
 }
 
@@ -33,8 +21,7 @@ export async function getAvailableSlots(date: string): Promise<TimeSlot[]> {
   const slots = generateSlotsForDate(date);
   if (slots.length === 0) return [];
 
-  const auth = getOAuthClient();
-  const calendar = google.calendar({ version: "v3", auth });
+  const calendar = getCalendarClient();
   const calendarId = getCalendarId();
 
   const timeMin = slots[0].start;
@@ -103,8 +90,7 @@ export async function createBooking(
     startDate.getTime() + bookingConfig.slotDurationMinutes * 60 * 1000,
   );
 
-  const auth = getOAuthClient();
-  const calendar = google.calendar({ version: "v3", auth });
+  const calendar = getCalendarClient();
 
   const description = [
     `Cliente: ${name}`,
@@ -130,12 +116,11 @@ export async function createBooking(
         dateTime: endDate.toISOString(),
         timeZone: bookingConfig.timezone,
       },
-      attendees: [{ email, displayName: name }],
       reminders: {
         useDefault: true,
       },
     },
-    sendUpdates: "all",
+    sendUpdates: "none",
   });
 
   return {

@@ -43,11 +43,11 @@ export function Hero() {
           <FadeIn delay={150} className="lg:col-span-5">
             <div className="relative mx-auto max-w-lg lg:mr-0 lg:ml-auto">
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/10 to-accent/10 blur-2xl" />
-              <Image
-                src="/images/hero/banner.png"
-                alt="Consulenza finanziaria professionale"
-                width={1000}
-                height={805}
+            <Image
+              src="/images/illustrations/hero-consultant.svg"
+              alt="Consulenza per mutui e prestiti"
+                width={640}
+                height={520}
                 priority
                 className="relative w-full drop-shadow-2xl"
               />

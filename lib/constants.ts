@@ -79,7 +79,7 @@ export const STEPS = [
   {
     step: 1,
     title: "Inserisci richiesta",
-    description: "Raccontaci la tua esigenza in pochi minuti.",
+    description: "Scegli giorno e ora dal calendario in pochi minuti.",
   },
   {
     step: 2,

@@ -19,10 +19,10 @@ export function About() {
             <div className="relative mx-auto max-w-md lg:mx-0">
               <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/10 to-accent/10 blur-2xl" />
               <Image
-                src="/images/hero.png"
+                src="/images/illustrations/about-consultant.svg"
                 alt={ABOUT.name}
-                width={600}
-                height={500}
+                width={560}
+                height={600}
                 className="relative w-full rounded-2xl shadow-feature"
               />
             </div>

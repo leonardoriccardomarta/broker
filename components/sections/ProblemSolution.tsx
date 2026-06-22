@@ -55,10 +55,10 @@ export function ProblemSolution() {
             </div>
             <div className="relative">
               <Image
-                src="/images/business/business.png"
-                alt="Soluzione finanziaria su misura"
-                width={800}
-                height={640}
+                src="/images/illustrations/solution-consulting.svg"
+                alt="Confronto tra le migliori offerte bancarie"
+                width={720}
+                height={480}
                 className="w-full"
               />
             </div>

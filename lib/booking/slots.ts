@@ -18,6 +18,24 @@ export type TimeSlot = {
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
+function overlapsLunchBreak(
+  slotStart: Date,
+  slotEnd: Date,
+  date: string,
+  timezone: string,
+): boolean {
+  const { lunchBreak } = bookingConfig;
+  if (!lunchBreak) return false;
+
+  const lunchStart = fromZonedTime(
+    `${date}T${lunchBreak.start}:00`,
+    timezone,
+  );
+  const lunchEnd = fromZonedTime(`${date}T${lunchBreak.end}:00`, timezone);
+
+  return slotsOverlap(slotStart, slotEnd, lunchStart, lunchEnd);
+}
+
 export function isValidBookingDate(date: string): boolean {
   if (!DATE_PATTERN.test(date)) return false;
 
@@ -62,9 +80,9 @@ export function generateSlotsForDate(date: string): TimeSlot[] {
 
   while (isBefore(cursor, dayEnd)) {
     const end = addMinutes(cursor, slotDurationMinutes);
-    if (isBefore(dayEnd, end) || end.getTime() === dayEnd.getTime()) break;
+    if (isBefore(dayEnd, end)) break;
 
-    if (!isBefore(cursor, minStart)) {
+    if (!isBefore(cursor, minStart) && !overlapsLunchBreak(cursor, end, date, timezone)) {
       const zonedStart = toZonedTime(cursor, timezone);
       slots.push({
         start: cursor.toISOString(),

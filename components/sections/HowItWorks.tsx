@@ -11,24 +11,21 @@ export function HowItWorks() {
           <SectionHeading
             eyebrow="Processo"
             title="Come funziona"
-            subtitle="Tre semplici passi per ottenere il finanziamento che cerchi."
+            subtitle="Quattro passi chiari, dalla prenotazione alla firma in banca."
           />
         </FadeIn>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((step, index) => (
-            <FadeIn key={step.step} delay={index * 120}>
-              <div className="relative h-full rounded-2xl border border-slate-200/80 bg-white p-8 shadow-soft">
-                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-xl font-bold text-white shadow-soft">
+            <FadeIn key={step.step} delay={index * 100}>
+              <div className="relative h-full rounded-2xl border border-slate-200/80 bg-white p-7 shadow-soft">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-bold text-white shadow-soft">
                   {step.step}
                 </div>
-                {index < STEPS.length - 1 && (
-                  <div className="absolute right-0 top-1/2 hidden h-px w-6 translate-x-full bg-slate-200 md:block" />
-                )}
-                <h3 className="text-xl font-semibold text-midnight">
+                <h3 className="text-lg font-semibold text-midnight">
                   {step.title}
                 </h3>
-                <p className="mt-3 leading-relaxed text-black/60">
+                <p className="mt-2 text-sm leading-relaxed text-black/60">
                   {step.description}
                 </p>
               </div>

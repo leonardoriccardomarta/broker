@@ -18,13 +18,19 @@ export function About() {
           <FadeIn>
             <div className="relative mx-auto max-w-md lg:mx-0">
               <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/10 to-accent/10 blur-2xl" />
-              <Image
-                src="/images/illustrations/about-consultant.svg"
-                alt={ABOUT.name}
-                width={560}
-                height={600}
-                className="relative w-full rounded-2xl shadow-feature"
-              />
+              <div className="relative overflow-hidden rounded-2xl shadow-feature">
+                <Image
+                  src="/images/photos/family-home.jpg"
+                  alt={ABOUT.name}
+                  width={560}
+                  height={600}
+                  className="h-[420px] w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-midnight/60 via-midnight/10 to-transparent" />
+                <blockquote className="absolute bottom-0 left-0 right-0 p-6 text-sm leading-relaxed text-white md:text-base">
+                  &ldquo;{ABOUT.quote}&rdquo;
+                </blockquote>
+              </div>
             </div>
           </FadeIn>
 

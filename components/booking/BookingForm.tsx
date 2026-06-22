@@ -3,7 +3,15 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { addDays, format, parseISO } from "date-fns";
 import { it } from "date-fns/locale";
-import { Calendar, CheckCircle2, Loader2, Phone, User } from "lucide-react";
+import {
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Loader2,
+  Phone,
+  User,
+} from "lucide-react";
+import { MiniCalendar } from "@/components/booking/MiniCalendar";
 import { Button } from "@/components/ui/Button";
 import { clientBookingConfig as defaults } from "@/lib/booking/client-config";
 
@@ -57,15 +65,19 @@ export function BookingForm() {
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
 
-  const loadSlots = useCallback(async (selectedDate: string) => {
-    if (!selectedDate) return;
+  const selectedDateLabel = selectedDate
+    ? format(parseISO(selectedDate), "EEEE d MMMM", { locale: it })
+    : "";
+
+  const loadSlots = useCallback(async (nextDate: string) => {
+    if (!nextDate) return;
 
     setLoadingSlots(true);
     setError(null);
     setSelectedSlot(null);
 
     try {
-      const res = await fetch(`/api/slots?date=${selectedDate}`);
+      const res = await fetch(`/api/slots?date=${nextDate}`);
       const data = await res.json();
 
       if (!res.ok) {
@@ -89,10 +101,6 @@ export function BookingForm() {
       .then((data: BookingUiConfig) => setUiConfig(data))
       .catch(() => setUiConfig(defaults));
   }, []);
-
-  function handleDateChange(nextDate: string) {
-    setDate(nextDate);
-  }
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -154,7 +162,7 @@ export function BookingForm() {
           <span className="font-medium text-midnight">{when}</span>.
         </p>
         <p className="mt-2 text-sm text-black/50">
-          Riceverai un&apos;email di conferma con i dettagli.
+          Ti contatterò all&apos;orario scelto. A presto!
         </p>
       </div>
     );
@@ -169,63 +177,64 @@ export function BookingForm() {
         <div className="text-left">
           <p className="font-semibold text-midnight">Prenota consulenza gratuita</p>
           <p className="text-sm text-black/55">
-            Scegli giorno e fascia oraria ({uiConfig.slotDurationMinutes} min)
+            Scegli giorno e orario ({uiConfig.slotDurationMinutes} min)
           </p>
         </div>
       </div>
 
       {step === "datetime" && (
         <div className="space-y-6">
-          <div>
-            <label
-              htmlFor="booking-date"
-              className="mb-2 block text-sm font-medium text-midnight"
-            >
-              Giorno
-            </label>
-            <select
-              id="booking-date"
-              value={selectedDate}
-              onChange={(e) => handleDateChange(e.target.value)}
-              className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-midnight outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
-              {dateOptions.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div>
+              <p className="mb-3 text-sm font-medium text-midnight">Scegli il giorno</p>
+              <MiniCalendar
+                selectedDate={selectedDate}
+                onSelect={setDate}
+                workingDays={uiConfig.workingDays}
+                daysAhead={uiConfig.daysAhead}
+              />
+            </div>
 
-          <div>
-            <p className="mb-3 text-sm font-medium text-midnight">Fascia oraria</p>
-            {loadingSlots ? (
-              <div className="flex items-center justify-center gap-2 py-10 text-black/50">
-                <Loader2 className="h-5 w-5 animate-spin" />
-                Caricamento fasce...
-              </div>
-            ) : slots.length === 0 ? (
-              <p className="rounded-2xl bg-slate-50 px-4 py-8 text-center text-sm text-black/55">
-                Nessuna fascia disponibile per questo giorno.
-              </p>
-            ) : (
-              <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
-                {slots.map((slot) => (
-                  <button
-                    key={slot.start}
-                    type="button"
-                    onClick={() => setSelectedSlot(slot)}
-                    className={`rounded-xl border px-3 py-2.5 text-sm font-medium transition ${
-                      selectedSlot?.start === slot.start
-                        ? "border-primary bg-primary text-white"
-                        : "border-slate-200 bg-white text-midnight hover:border-primary/40"
-                    }`}
-                  >
-                    {slot.label}
-                  </button>
-                ))}
-              </div>
-            )}
+            <div>
+              <p className="mb-1 text-sm font-medium text-midnight">Orari disponibili</p>
+              {selectedDateLabel && (
+                <p className="mb-3 text-sm capitalize text-black/50">
+                  {selectedDateLabel}
+                </p>
+              )}
+
+              {loadingSlots ? (
+                <div className="flex min-h-[220px] items-center justify-center gap-2 rounded-2xl bg-slate-50 text-black/50">
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  Caricamento orari...
+                </div>
+              ) : slots.length === 0 ? (
+                <div className="flex min-h-[220px] items-center justify-center rounded-2xl bg-slate-50 px-4 text-center text-sm text-black/55">
+                  Nessun orario disponibile per questo giorno.
+                </div>
+              ) : (
+                <div className="grid max-h-[280px] grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
+                  {slots.map((slot) => {
+                    const active = selectedSlot?.start === slot.start;
+                    return (
+                      <button
+                        key={slot.start}
+                        type="button"
+                        onClick={() => setSelectedSlot(slot)}
+                        className={`flex items-center justify-center gap-1.5 rounded-xl border px-3 py-3 text-sm font-semibold transition ${
+                          active
+                            ? "border-primary bg-primary text-white shadow-md shadow-primary/20"
+                            : "border-slate-200 bg-white text-midnight hover:border-primary/40 hover:bg-primary/5"
+                        }`}
+                      >
+                        <Clock className={`h-3.5 w-3.5 ${active ? "text-white" : "text-primary"}`} />
+                        {slot.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </div>
 
           {error && (
@@ -308,7 +317,7 @@ export function BookingForm() {
 
           <div>
             <label htmlFor="note" className="mb-1.5 block text-sm font-medium text-midnight">
-              Note (opzionale)
+              Di cosa hai bisogno? (opzionale)
             </label>
             <textarea
               id="note"
@@ -316,7 +325,7 @@ export function BookingForm() {
               value={note}
               onChange={(e) => setNote(e.target.value)}
               className="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-              placeholder="Es. mutuo prima casa, prestito personale..."
+              placeholder="Es. mutuo prima casa, prestito personale, consolidamento..."
             />
           </div>
 

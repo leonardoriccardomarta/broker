@@ -1,11 +1,11 @@
-import { Ban, AlertCircle, HelpCircle, CheckCircle2 } from "lucide-react";
+import { AlertCircle, Ban, Building2, HelpCircle, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PROBLEMS, SOLUTION } from "@/lib/constants";
 
-const icons = [Ban, AlertCircle, HelpCircle];
+const icons = [Ban, AlertCircle, HelpCircle, Building2];
 
 export function ProblemSolution() {
   return (
@@ -15,23 +15,23 @@ export function ProblemSolution() {
           <SectionHeading
             eyebrow="Il problema"
             title="Ti riconosci in una di queste situazioni?"
-            subtitle="Non sei solo: molte persone affrontano le stesse difficoltà nel mondo del credito."
+            subtitle="Molte persone affrontano le stesse difficoltà. La differenza è avere qualcuno che lavora solo per te."
           />
         </FadeIn>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {PROBLEMS.map((problem, index) => {
             const Icon = icons[index];
             return (
-              <FadeIn key={problem.title} delay={index * 100}>
-                <div className="h-full rounded-2xl bg-white p-8 shadow-feature transition-transform duration-300 hover:-translate-y-1">
-                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-500">
-                    <Icon className="h-7 w-7" />
+              <FadeIn key={problem.title} delay={index * 80}>
+                <div className="h-full rounded-2xl bg-white p-6 shadow-feature transition-transform duration-300 hover:-translate-y-1 md:p-7">
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-red-50 text-red-500">
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-semibold text-midnight">
+                  <h3 className="text-lg font-semibold text-midnight">
                     {problem.title}
                   </h3>
-                  <p className="mt-3 leading-relaxed text-black/60">
+                  <p className="mt-3 text-sm leading-relaxed text-black/60">
                     {problem.description}
                   </p>
                 </div>
@@ -53,13 +53,13 @@ export function ProblemSolution() {
                 {SOLUTION.description}
               </p>
             </div>
-            <div className="relative">
+            <div className="relative overflow-hidden rounded-2xl shadow-feature">
               <Image
-                src="/images/illustrations/solution-consulting.svg"
-                alt="Confronto tra le migliori offerte bancarie"
+                src="/images/photos/consulting.jpg"
+                alt="Consulenza finanziaria personalizzata"
                 width={720}
                 height={480}
-                className="w-full"
+                className="h-64 w-full object-cover md:h-80"
               />
             </div>
           </div>

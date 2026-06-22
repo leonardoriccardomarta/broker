@@ -43,14 +43,21 @@ export function Hero() {
           <FadeIn delay={150} className="lg:col-span-5">
             <div className="relative mx-auto max-w-lg lg:mr-0 lg:ml-auto">
               <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/10 to-accent/10 blur-2xl" />
-            <Image
-              src="/images/illustrations/hero-consultant.svg"
-              alt="Consulenza per mutui e prestiti"
-                width={640}
-                height={520}
-                priority
-                className="relative w-full drop-shadow-2xl"
-              />
+              <div className="relative overflow-hidden rounded-[2rem] shadow-feature">
+                <Image
+                  src="/images/photos/hero-keys.jpg"
+                  alt="Consulenza per mutui e finanziamenti"
+                  width={640}
+                  height={520}
+                  priority
+                  className="h-[320px] w-full object-cover md:h-[400px]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-midnight/50 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <p className="text-sm font-medium text-white/80">Consulenza gratuita</p>
+                  <p className="text-lg font-semibold">Mutui, prestiti e cessione del quinto</p>
+                </div>
+              </div>
             </div>
           </FadeIn>
         </div>

@@ -4,13 +4,6 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SERVICES } from "@/lib/constants";
 
-const icons = [
-  "/images/features/dollar.svg",
-  "/images/features/time.svg",
-  "/images/features/signal.svg",
-  "/images/features/dollar.svg",
-];
-
 export function Services() {
   return (
     <section id="servizi" className="bg-slate-50/80 py-20 md:py-28">
@@ -19,7 +12,7 @@ export function Services() {
           <SectionHeading
             eyebrow="Servizi"
             title="Soluzioni finanziarie su misura"
-            subtitle="Dalla prima consulenza all'approvazione: ti accompagno in ogni fase."
+            subtitle="Dalla prima analisi all'approvazione in banca: ti accompagno in ogni fase, senza conflitto di interessi."
           />
         </FadeIn>
 
@@ -28,7 +21,7 @@ export function Services() {
             <FadeIn key={service.title} delay={index * 80}>
               <article className="group flex h-full flex-col rounded-2xl bg-white p-6 shadow-feature transition-all duration-300 hover:-translate-y-1">
                 <Image
-                  src={icons[index]}
+                  src={service.icon}
                   alt=""
                   width={48}
                   height={48}

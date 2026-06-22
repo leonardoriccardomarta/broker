@@ -2,16 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { SITE } from "@/lib/constants";
-
-const navLinks = [
-  { label: "Servizi", href: "#servizi" },
-  { label: "Come funziona", href: "#come-funziona" },
-  { label: "Recensioni", href: "#recensioni" },
-  { label: "Chi sono", href: "#chi-sono" },
-];
+import { BOOKING_HREF, NAV_LINKS, SITE } from "@/lib/constants";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,7 +27,7 @@ export function Header() {
       }`}
     >
       <SectionContainer className="flex items-center justify-between gap-4">
-        <a href="#" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/images/logo/icon.svg"
             alt=""
@@ -47,10 +41,10 @@ export function Header() {
             </p>
             <p className="text-xs text-black/50">{SITE.title}</p>
           </div>
-        </a>
+        </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => (
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Principale">
+          {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -61,13 +55,14 @@ export function Header() {
           ))}
         </nav>
 
-        <Button variant="primary" className="hidden lg:inline-flex">
+        <Button href={BOOKING_HREF} variant="primary" className="hidden lg:inline-flex">
           Prenota consulenza
         </Button>
 
         <button
           type="button"
           aria-label="Menu"
+          aria-expanded={menuOpen}
           className="flex flex-col gap-1.5 p-2 lg:hidden"
           onClick={() => setMenuOpen(!menuOpen)}
         >
@@ -79,8 +74,8 @@ export function Header() {
 
       {menuOpen && (
         <div className="border-t border-slate-200 bg-white px-4 py-4 lg:hidden">
-          <nav className="flex flex-col gap-3">
-            {navLinks.map((link) => (
+          <nav className="flex flex-col gap-3" aria-label="Mobile">
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -90,7 +85,12 @@ export function Header() {
                 {link.label}
               </a>
             ))}
-            <Button variant="primary" className="mt-2 w-full">
+            <Button
+              href={BOOKING_HREF}
+              variant="primary"
+              className="mt-2 w-full"
+              onClick={() => setMenuOpen(false)}
+            >
               Prenota consulenza
             </Button>
           </nav>

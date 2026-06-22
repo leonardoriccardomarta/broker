@@ -1,13 +1,23 @@
 "use client";
 
-import { type ButtonHTMLAttributes } from "react";
+import { type AnchorHTMLAttributes, type ButtonHTMLAttributes } from "react";
 
 type ButtonVariant = "primary" | "secondary" | "accent" | "white";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type SharedProps = {
   variant?: ButtonVariant;
   size?: "default" | "lg";
-}
+  className?: string;
+  children: React.ReactNode;
+};
+
+type ButtonOnlyProps = SharedProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+
+type LinkProps = SharedProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & { href: string };
+
+export type ButtonProps = ButtonOnlyProps | LinkProps;
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
@@ -25,6 +35,9 @@ const sizeStyles = {
   lg: "px-8 py-4 text-base sm:text-lg",
 };
 
+const baseClassName =
+  "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]";
+
 export function Button({
   variant = "primary",
   size = "default",
@@ -32,11 +45,20 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
+  const classes = `${baseClassName} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+
+  if ("href" in props && props.href) {
+    const { href, ...anchorProps } = props;
+    return (
+      <a href={href} className={classes} {...anchorProps}>
+        {children}
+      </a>
+    );
+  }
+
+  const buttonProps = props as ButtonHTMLAttributes<HTMLButtonElement>;
   return (
-    <button
-      className={`inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
-      {...props}
-    >
+    <button className={classes} {...buttonProps}>
       {children}
     </button>
   );

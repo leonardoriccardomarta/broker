@@ -1,11 +1,11 @@
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { FINAL_CTA } from "@/lib/constants";
+import { BOOKING_HREF, FINAL_CTA } from "@/lib/constants";
 
 export function FinalCta() {
   return (
-    <section className="py-20 md:py-28">
+    <section id="prenota" className="py-20 md:py-28">
       <SectionContainer>
         <FadeIn>
           <div className="relative overflow-hidden rounded-[2rem] bg-cta px-8 py-14 text-center md:px-16 md:py-20">
@@ -17,7 +17,7 @@ export function FinalCta() {
               <p className="mx-auto mt-5 text-lg text-white/85 md:text-xl">
                 {FINAL_CTA.subheadline}
               </p>
-              <Button variant="white" size="lg" className="mt-10">
+              <Button href={BOOKING_HREF} variant="white" size="lg" className="mt-10">
                 {FINAL_CTA.cta}
               </Button>
             </div>

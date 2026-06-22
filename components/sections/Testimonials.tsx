@@ -29,7 +29,7 @@ export function Testimonials() {
                     {featured.name}
                   </p>
                   <p className="text-sm text-black/55">
-                    {featured.location} · {featured.service}
+                    {featured.location}, {featured.service}
                   </p>
                 </div>
               </div>
@@ -70,7 +70,7 @@ export function Testimonials() {
                     {testimonial.name}
                   </p>
                   <p className="text-xs text-black/50">
-                    {testimonial.location} · {testimonial.service}
+                    {testimonial.location}, {testimonial.service}
                   </p>
                 </article>
               ))}

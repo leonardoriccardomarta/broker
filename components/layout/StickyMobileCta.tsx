@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { BOOKING_HREF } from "@/lib/constants";
 
 export function StickyMobileCta() {
   return (
@@ -7,7 +8,12 @@ export function StickyMobileCta() {
         <p className="text-sm font-medium text-midnight leading-tight">
           Consulenza gratuita
         </p>
-        <Button variant="primary" size="default" className="shrink-0 px-5 py-2.5 text-sm">
+        <Button
+          href={BOOKING_HREF}
+          variant="primary"
+          size="default"
+          className="shrink-0 px-5 py-2.5 text-sm"
+        >
           Prenota
         </Button>
       </div>

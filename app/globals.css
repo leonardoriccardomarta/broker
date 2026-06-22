@@ -53,6 +53,10 @@
     color: var(--foreground);
     font-family: var(--font-jakarta), system-ui, sans-serif;
   }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
 }
 
 @layer utilities {

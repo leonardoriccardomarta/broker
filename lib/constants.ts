@@ -1,8 +1,25 @@
 export const SITE = {
-  name: "Marco Rossi",
+  name: "Filippo Carriero",
   title: "Mediatore Creditizio",
   tagline: "Consulenza finanziaria indipendente",
 } as const;
+
+export const SECTION_IDS = {
+  servizi: "servizi",
+  comeFunziona: "come-funziona",
+  recensioni: "recensioni",
+  chiSono: "chi-sono",
+  prenota: "prenota",
+} as const;
+
+export const NAV_LINKS = [
+  { label: "Servizi", href: `#${SECTION_IDS.servizi}` },
+  { label: "Come funziona", href: `#${SECTION_IDS.comeFunziona}` },
+  { label: "Recensioni", href: `#${SECTION_IDS.recensioni}` },
+  { label: "Chi sono", href: `#${SECTION_IDS.chiSono}` },
+] as const;
+
+export const BOOKING_HREF = `#${SECTION_IDS.prenota}`;
 
 export const HERO = {
   headline: "Ottieni il miglior finanziamento per le tue esigenze",
@@ -32,7 +49,7 @@ export const PROBLEMS = [
 export const SOLUTION = {
   title: "La soluzione è più semplice di quanto pensi",
   description:
-    "Ti guido passo dopo passo nella scelta del finanziamento più adatto alle tue esigenze. Confronto le migliori offerte sul mercato e ti accompagno fino all'approvazione — senza costi e senza impegno.",
+    "Ti guido passo dopo passo nella scelta del finanziamento più adatto alle tue esigenze. Confronto le migliori offerte sul mercato e ti accompagno fino all'approvazione, senza costi e senza impegno.",
 } as const;
 
 export const SERVICES = [
@@ -80,7 +97,7 @@ export const TESTIMONIALS = [
   {
     name: "Laura Bianchi",
     location: "Milano",
-    text: "Avevo ricevuto un rifiuto dalla banca. Marco ha trovato un mutuo con condizioni migliori di quanto sperassi. Professionale e sempre disponibile.",
+    text: "Avevo ricevuto un rifiuto dalla banca. Filippo ha trovato un mutuo con condizioni migliori di quanto sperassi. Professionale e sempre disponibile.",
     service: "Mutuo prima casa",
   },
   {
@@ -92,13 +109,13 @@ export const TESTIMONIALS = [
   {
     name: "Anna Colombo",
     location: "Torino",
-    text: "La cessione del quinto mi sembrava complicata, ma Marco ha spiegato tutto in modo semplice. Ora ho una rata che posso permettermi.",
+    text: "La cessione del quinto mi sembrava complicata, ma Filippo ha spiegato tutto in modo semplice. Ora ho una rata che posso permettermi.",
     service: "Cessione del quinto",
   },
 ] as const;
 
 export const ABOUT = {
-  name: "Marco Rossi",
+  name: "Filippo Carriero",
   role: "Mediatore creditizio",
   description:
     "Da oltre 10 anni aiuto famiglie e professionisti a trovare il finanziamento giusto. Lavoro in modo indipendente dalle banche per offrirti sempre la soluzione più vantaggiosa. La prima consulenza è gratuita e senza alcun impegno.",

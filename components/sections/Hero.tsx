@@ -3,7 +3,7 @@ import { CheckCircle2, Users } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { HERO } from "@/lib/constants";
+import { BOOKING_HREF, HERO } from "@/lib/constants";
 
 export function Hero() {
   return (
@@ -30,7 +30,7 @@ export function Hero() {
               {HERO.subheadline}
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Button variant="primary" size="lg">
+              <Button href={BOOKING_HREF} variant="primary" size="lg">
                 {HERO.cta}
               </Button>
               <div className="flex items-center gap-2 text-sm font-medium text-black/60">

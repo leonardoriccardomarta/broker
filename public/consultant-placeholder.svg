@@ -3,6 +3,6 @@
   <circle cx="200" cy="160" r="72" fill="#94a3b8"/>
   <path d="M80 400c20-80 100-120 120-120s100 40 120 120" fill="#94a3b8"/>
   <rect x="60" y="360" width="280" height="80" rx="12" fill="#1e40af" opacity="0.15"/>
-  <text x="200" y="410" text-anchor="middle" fill="#1e40af" font-family="system-ui,sans-serif" font-size="16" font-weight="600">Marco Rossi</text>
+  <text x="200" y="410" text-anchor="middle" fill="#1e40af" font-family="system-ui,sans-serif" font-size="16" font-weight="600">Filippo Carriero</text>
   <text x="200" y="432" text-anchor="middle" fill="#64748b" font-family="system-ui,sans-serif" font-size="13">Mediatore creditizio</text>
 </svg>

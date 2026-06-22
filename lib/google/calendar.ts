@@ -5,7 +5,7 @@ import {
   slotsOverlap,
   type TimeSlot,
 } from "@/lib/booking/slots";
-import { getCalendarClient } from "@/lib/google/auth";
+import { getAuthorizedCalendarClient } from "@/lib/google/auth";
 
 function getCalendarId(): string {
   const calendarId = process.env.GOOGLE_CALENDAR_ID?.trim();
@@ -21,7 +21,7 @@ export async function getAvailableSlots(date: string): Promise<TimeSlot[]> {
   const slots = generateSlotsForDate(date);
   if (slots.length === 0) return [];
 
-  const calendar = getCalendarClient();
+  const calendar = await getAuthorizedCalendarClient();
   const calendarId = getCalendarId();
 
   const timeMin = slots[0].start;
@@ -90,7 +90,7 @@ export async function createBooking(
     startDate.getTime() + bookingConfig.slotDurationMinutes * 60 * 1000,
   );
 
-  const calendar = getCalendarClient();
+  const calendar = await getAuthorizedCalendarClient();
 
   const description = [
     `Cliente: ${name}`,

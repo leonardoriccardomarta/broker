@@ -14,6 +14,7 @@ import {
 import { MiniCalendar } from "@/components/booking/MiniCalendar";
 import { Button } from "@/components/ui/Button";
 import { clientBookingConfig as defaults } from "@/lib/booking/client-config";
+import { parseDateKey } from "@/lib/booking/parse-date";
 
 type Slot = {
   start: string;
@@ -66,7 +67,7 @@ export function BookingForm() {
   const [note, setNote] = useState("");
 
   const selectedDateLabel = selectedDate
-    ? format(parseISO(selectedDate), "EEEE d MMMM", { locale: it })
+    ? format(parseDateKey(selectedDate), "EEEE d MMMM", { locale: it })
     : "";
 
   const loadSlots = useCallback(async (nextDate: string) => {

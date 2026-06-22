@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isGoogleCalendarConfigured } from "@/lib/booking/config";
 import { createBooking } from "@/lib/google/calendar";
+import { getGoogleCalendarErrorMessage } from "@/lib/google/errors";
 
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -58,11 +59,14 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     const message =
-      error instanceof Error
+      error instanceof Error && !("code" in error)
         ? error.message
-        : "Prenotazione non riuscita. Riprova.";
+        : getGoogleCalendarErrorMessage(error);
 
-    const status = message.includes("non è più disponibile") ? 409 : 500;
+    const status =
+      message.includes("non è più disponibile") || message.includes("non disponibile")
+        ? 409
+        : 500;
     console.error("[api/book]", error);
     return NextResponse.json({ error: message }, { status });
   }

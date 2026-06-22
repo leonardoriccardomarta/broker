@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { isGoogleCalendarConfigured } from "@/lib/booking/config";
 import { isValidBookingDate } from "@/lib/booking/slots";
 import { getAvailableSlots } from "@/lib/google/calendar";
+import { getGoogleCalendarErrorMessage } from "@/lib/google/errors";
 
 export async function GET(request: Request) {
   if (!isGoogleCalendarConfigured()) {
@@ -27,7 +28,7 @@ export async function GET(request: Request) {
   } catch (error) {
     console.error("[api/slots]", error);
     return NextResponse.json(
-      { error: "Impossibile caricare le fasce orarie." },
+      { error: getGoogleCalendarErrorMessage(error) },
       { status: 500 },
     );
   }

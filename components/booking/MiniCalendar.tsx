@@ -10,11 +10,11 @@ import {
   getDay,
   isSameDay,
   isSameMonth,
-  parseISO,
   startOfDay,
   startOfMonth,
   subMonths,
 } from "date-fns";
+import { parseDateKey } from "@/lib/booking/parse-date";
 import { it } from "date-fns/locale";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -52,11 +52,11 @@ export function MiniCalendar({
   );
 
   const [viewMonth, setViewMonth] = useState(() =>
-    startOfMonth(selectedDate ? parseISO(selectedDate) : new Date()),
+    startOfMonth(selectedDate ? parseDateKey(selectedDate) : new Date()),
   );
 
   const today = startOfDay(new Date());
-  const selected = selectedDate ? parseISO(selectedDate) : null;
+  const selected = selectedDate ? parseDateKey(selectedDate) : null;
 
   const monthStart = startOfMonth(viewMonth);
   const monthEnd = endOfMonth(viewMonth);

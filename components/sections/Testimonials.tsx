@@ -18,11 +18,11 @@ export function Testimonials() {
               <div className="absolute right-0 top-0 h-32 w-32 rounded-full bg-accent/10 blur-3xl" />
               <div className="relative flex items-center gap-4">
                 <Image
-                  src="/images/people/user.png"
+                  src={featured.avatar}
                   alt={featured.name}
                   width={72}
                   height={72}
-                  className="rounded-full ring-4 ring-white"
+                  className="h-[72px] w-[72px] rounded-full object-cover ring-4 ring-white"
                 />
                 <div>
                   <p className="text-lg font-semibold text-midnight">
@@ -58,6 +58,23 @@ export function Testimonials() {
                   key={testimonial.name}
                   className="rounded-2xl bg-white p-6 shadow-soft"
                 >
+                  <div className="mb-4 flex items-center gap-3">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      width={40}
+                      height={40}
+                      className="h-10 w-10 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="font-semibold text-midnight">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-xs text-black/50">
+                        {testimonial.location}
+                      </p>
+                    </div>
+                  </div>
                   <div className="flex gap-1 text-amber-400">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} className="h-3.5 w-3.5 fill-current" />
@@ -66,12 +83,7 @@ export function Testimonials() {
                   <p className="mt-4 text-sm leading-relaxed text-black/65">
                     &ldquo;{testimonial.text}&rdquo;
                   </p>
-                  <p className="mt-4 font-semibold text-midnight">
-                    {testimonial.name}
-                  </p>
-                  <p className="text-xs text-black/50">
-                    {testimonial.location}, {testimonial.service}
-                  </p>
+                  <p className="mt-3 text-xs text-black/50">{testimonial.service}</p>
                 </article>
               ))}
             </div>

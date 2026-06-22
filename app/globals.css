@@ -1,30 +1,68 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --primary: #1e40af;
+  --background: #ffffff;
+  --foreground: #001b50;
+  --primary: #0057ff;
+  --primary-dark: #0046cc;
   --primary-light: #3b82f6;
   --accent: #059669;
   --accent-light: #10b981;
   --muted: #64748b;
+  --success-light: #e7f8f2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
   --color-primary-light: var(--primary-light);
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-muted: var(--muted);
-  --font-sans: var(--font-inter);
+  --color-midnight: #001b50;
+  --color-success-light: var(--success-light);
+  --font-sans: var(--font-jakarta);
+
+  --shadow-soft: 0px 4px 17px 0px #00000008;
+  --shadow-card: 0px 24px 64px 0px #00000012;
+  --shadow-feature: 0px 72px 129px 0px #0000001a;
+
+  --background-image-hero: linear-gradient(
+    120.3deg,
+    #d5f2ff 31.56%,
+    hsla(0, 0%, 100%, 0) 94.83%
+  );
+  --background-image-cta: linear-gradient(135deg, #0057ff 0%, #0046cc 50%, #059669 100%);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), system-ui, sans-serif;
+@layer base {
+  *,
+  ::after,
+  ::before {
+    border-color: #e2e8f0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-jakarta), system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 @keyframes fade-in-up {
@@ -36,8 +74,4 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out forwards;
 }

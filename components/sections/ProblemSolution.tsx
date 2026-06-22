@@ -1,5 +1,7 @@
-import { AlertCircle, Ban, HelpCircle, CheckCircle2 } from "lucide-react";
+import { Ban, AlertCircle, HelpCircle, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PROBLEMS, SOLUTION } from "@/lib/constants";
 
@@ -7,10 +9,11 @@ const icons = [Ban, AlertCircle, HelpCircle];
 
 export function ProblemSolution() {
   return (
-    <section className="py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-4">
+    <section className="py-20 md:py-28">
+      <SectionContainer>
         <FadeIn>
           <SectionHeading
+            eyebrow="Il problema"
             title="Ti riconosci in una di queste situazioni?"
             subtitle="Non sei solo: molte persone affrontano le stesse difficoltà nel mondo del credito."
           />
@@ -21,14 +24,14 @@ export function ProblemSolution() {
             const Icon = icons[index];
             return (
               <FadeIn key={problem.title} delay={index * 100}>
-                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-500">
-                    <Icon className="h-6 w-6" />
+                <div className="h-full rounded-2xl bg-white p-8 shadow-feature transition-transform duration-300 hover:-translate-y-1">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-red-500">
+                    <Icon className="h-7 w-7" />
                   </div>
-                  <h3 className="text-lg font-semibold text-slate-900">
+                  <h3 className="text-xl font-semibold text-midnight">
                     {problem.title}
                   </h3>
-                  <p className="mt-2 text-slate-600 leading-relaxed">
+                  <p className="mt-3 leading-relaxed text-black/60">
                     {problem.description}
                   </p>
                 </div>
@@ -38,23 +41,30 @@ export function ProblemSolution() {
         </div>
 
         <FadeIn delay={200}>
-          <div className="mt-12 rounded-2xl border border-accent/20 bg-accent/5 p-8 md:p-10">
-            <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-6">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                <CheckCircle2 className="h-6 w-6" />
+          <div className="mt-16 grid items-center gap-10 overflow-hidden rounded-3xl bg-success-light p-8 md:grid-cols-2 md:p-12">
+            <div>
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent">
+                <CheckCircle2 className="h-7 w-7" />
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-slate-900 md:text-2xl">
-                  {SOLUTION.title}
-                </h3>
-                <p className="mt-3 text-lg leading-relaxed text-slate-600">
-                  {SOLUTION.description}
-                </p>
-              </div>
+              <h3 className="text-2xl font-semibold text-midnight md:text-3xl">
+                {SOLUTION.title}
+              </h3>
+              <p className="mt-4 text-lg leading-relaxed text-black/65">
+                {SOLUTION.description}
+              </p>
+            </div>
+            <div className="relative">
+              <Image
+                src="/images/business/business.png"
+                alt="Soluzione finanziaria su misura"
+                width={800}
+                height={640}
+                className="w-full"
+              />
             </div>
           </div>
         </FadeIn>
-      </div>
+      </SectionContainer>
     </section>
   );
 }

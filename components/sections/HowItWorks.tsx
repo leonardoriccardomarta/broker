@@ -1,65 +1,41 @@
 import { FadeIn } from "@/components/ui/FadeIn";
+import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { STEPS } from "@/lib/constants";
 
 export function HowItWorks() {
   return (
-    <section className="py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-4">
+    <section id="come-funziona" className="py-20 md:py-28">
+      <SectionContainer>
         <FadeIn>
           <SectionHeading
+            eyebrow="Processo"
             title="Come funziona"
             subtitle="Tre semplici passi per ottenere il finanziamento che cerchi."
           />
         </FadeIn>
 
-        <div className="relative">
-          <div className="absolute left-8 top-0 hidden h-full w-0.5 bg-gradient-to-b from-primary via-accent to-primary md:left-1/2 md:block md:-translate-x-px" />
-
-          <div className="flex flex-col gap-10 md:gap-16">
-            {STEPS.map((step, index) => (
-              <FadeIn key={step.step} delay={index * 120}>
-                <div
-                  className={`relative flex flex-col gap-4 md:flex-row md:items-center md:gap-8 ${
-                    index % 2 === 1 ? "md:flex-row-reverse" : ""
-                  }`}
-                >
-                  <div className="flex items-center gap-4 md:w-1/2 md:justify-end">
-                    {index % 2 === 0 && (
-                      <div className="hidden text-right md:block">
-                        <h3 className="text-xl font-bold text-slate-900">
-                          {step.title}
-                        </h3>
-                        <p className="mt-2 text-slate-600">{step.description}</p>
-                      </div>
-                    )}
-                    <div className="relative z-10 flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary text-2xl font-bold text-white shadow-lg shadow-primary/30">
-                      {step.step}
-                    </div>
-                    {index % 2 === 1 && (
-                      <div className="hidden md:block">
-                        <h3 className="text-xl font-bold text-slate-900">
-                          {step.title}
-                        </h3>
-                        <p className="mt-2 text-slate-600">{step.description}</p>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="md:w-1/2 md:hidden">
-                    <h3 className="text-xl font-bold text-slate-900">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 text-slate-600">{step.description}</p>
-                  </div>
-
-                  <div className="hidden md:block md:w-1/2" />
+        <div className="grid gap-6 md:grid-cols-3">
+          {STEPS.map((step, index) => (
+            <FadeIn key={step.step} delay={index * 120}>
+              <div className="relative h-full rounded-2xl border border-slate-200/80 bg-white p-8 shadow-soft">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-xl font-bold text-white shadow-soft">
+                  {step.step}
                 </div>
-              </FadeIn>
-            ))}
-          </div>
+                {index < STEPS.length - 1 && (
+                  <div className="absolute right-0 top-1/2 hidden h-px w-6 translate-x-full bg-slate-200 md:block" />
+                )}
+                <h3 className="text-xl font-semibold text-midnight">
+                  {step.title}
+                </h3>
+                <p className="mt-3 leading-relaxed text-black/60">
+                  {step.description}
+                </p>
+              </div>
+            </FadeIn>
+          ))}
         </div>
-      </div>
+      </SectionContainer>
     </section>
   );
 }

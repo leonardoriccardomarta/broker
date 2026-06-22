@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
 import { StickyMobileCta } from "@/components/layout/StickyMobileCta";
 import { SITE } from "@/lib/constants";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const jakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
   display: "swap",
 });
@@ -43,18 +44,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className={`${inter.variable} scroll-smooth`}>
+    <html lang="it" className={`${jakarta.variable} scroll-smooth`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <Header />
         <main className="pb-24 md:pb-0">{children}</main>
-        <footer className="border-t border-slate-200 bg-white py-8">
-          <div className="mx-auto max-w-6xl px-4 text-center text-sm text-slate-500">
-            <p>
-              © {new Date().getFullYear()} {SITE.name} — {SITE.title}
-            </p>
-            <p className="mt-1">{SITE.tagline}</p>
-          </div>
-        </footer>
+        <Footer />
         <StickyMobileCta />
       </body>
     </html>

@@ -1,46 +1,60 @@
 import Image from "next/image";
-import { Users } from "lucide-react";
+import { CheckCircle2, Users } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/ui/FadeIn";
+import { SectionContainer } from "@/components/ui/SectionContainer";
 import { HERO } from "@/lib/constants";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white py-16 md:py-24">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 md:grid-cols-2 md:gap-16">
-        <FadeIn>
-          <h1 className="text-3xl font-bold leading-tight tracking-tight text-slate-900 md:text-5xl">
-            {HERO.headline}
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-slate-600 md:text-xl">
-            {HERO.subheadline}
-          </p>
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <Button variant="accent" size="lg">
-              {HERO.cta}
-            </Button>
-            <div className="flex items-center gap-2 text-sm text-slate-600">
-              <Users className="h-5 w-5 text-accent" />
-              <span className="font-medium">{HERO.trust}</span>
-            </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={150}>
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/10 to-accent/10 blur-2xl" />
+    <section className="relative overflow-hidden bg-hero pt-28 pb-16 md:pt-36 md:pb-24">
+      <SectionContainer>
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
+          <FadeIn className="relative lg:col-span-7">
             <Image
-              src="/consultant-placeholder.svg"
-              alt="Marco Rossi, mediatore creditizio"
-              width={400}
-              height={480}
-              priority
-              className="relative rounded-2xl shadow-xl ring-1 ring-slate-200"
+              src="/images/hero/star.svg"
+              alt=""
+              width={80}
+              height={80}
+              className="absolute -top-8 right-8 hidden opacity-80 md:block"
+              aria-hidden
             />
-          </div>
-        </FadeIn>
-      </div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-4 py-2 text-sm font-medium text-primary shadow-soft backdrop-blur-sm">
+              <CheckCircle2 className="h-4 w-4" />
+              Mediatore creditizio indipendente
+            </div>
+            <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight text-midnight text-balance sm:text-5xl lg:text-6xl">
+              {HERO.headline}
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-black/65 md:text-xl">
+              {HERO.subheadline}
+            </p>
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <Button variant="primary" size="lg">
+                {HERO.cta}
+              </Button>
+              <div className="flex items-center gap-2 text-sm font-medium text-black/60">
+                <Users className="h-5 w-5 text-accent" />
+                {HERO.trust}
+              </div>
+            </div>
+          </FadeIn>
+
+          <FadeIn delay={150} className="lg:col-span-5">
+            <div className="relative mx-auto max-w-lg lg:mr-0 lg:ml-auto">
+              <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-primary/10 to-accent/10 blur-2xl" />
+              <Image
+                src="/images/hero/banner.png"
+                alt="Consulenza finanziaria professionale"
+                width={1000}
+                height={805}
+                priority
+                className="relative w-full drop-shadow-2xl"
+              />
+            </div>
+          </FadeIn>
+        </div>
+      </SectionContainer>
     </section>
   );
 }

@@ -12,8 +12,8 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-slate-50 text-midnight">
       <SectionContainer className="py-6 md:py-8">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="sm:col-span-2 lg:col-span-2">
             <Link
               href="/"
               className="inline-block transition-opacity hover:opacity-80"
@@ -24,59 +24,48 @@ export function Footer() {
             <p className="mt-2 text-sm text-black/50">{SITE.tagline}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 sm:col-span-2 lg:col-span-8 lg:grid-cols-3">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-black/40">
-                Servizi
-              </p>
-              <ul className="mt-3 space-y-1.5">
-                {SERVICES.map((service) => (
-                  <li key={service.title}>
-                    <a
-                      href={`#${SECTION_IDS.servizi}`}
-                      className="text-sm text-black/65 transition-colors hover:text-primary"
-                    >
-                      {service.title}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-black/40">
-                Navigazione
-              </p>
-              <ul className="mt-3 space-y-1.5">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-sm text-black/65 transition-colors hover:text-primary"
-                    >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-                <li>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-black/40">
+              Servizi
+            </p>
+            <ul className="mt-3 space-y-1.5">
+              {SERVICES.map((service) => (
+                <li key={service.title}>
                   <a
-                    href={BOOKING_HREF}
-                    className="text-sm font-medium text-primary transition-colors hover:text-primary-dark"
+                    href={`#${SECTION_IDS.servizi}`}
+                    className="text-sm text-black/65 transition-colors hover:text-primary"
                   >
-                    Prenota consulenza
+                    {service.title}
                   </a>
                 </li>
-              </ul>
-            </div>
+              ))}
+            </ul>
+          </div>
 
-            <div className="col-span-2 lg:col-span-1">
-              <a
-                href={BOOKING_HREF}
-                className="inline-flex w-full items-center justify-center rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark sm:w-auto"
-              >
-                Consulenza gratuita
-              </a>
-            </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-black/40">
+              Navigazione
+            </p>
+            <ul className="mt-3 space-y-1.5">
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-black/65 transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={BOOKING_HREF}
+                  className="text-sm font-medium text-primary transition-colors hover:text-primary-dark"
+                >
+                  Prenota consulenza
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 

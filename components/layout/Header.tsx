@@ -29,11 +29,11 @@ export function Header() {
       <SectionContainer className="flex items-center justify-between gap-4">
         <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           <Image
-            src="/favicon.ico"
+            src="/images/logo/brand-icon.svg"
             alt=""
-            width={36}
-            height={36}
-            className="h-9 w-9 shrink-0 rounded-lg sm:h-10 sm:w-10"
+            width={40}
+            height={40}
+            className="h-9 w-9 shrink-0 sm:h-10 sm:w-10"
           />
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold text-midnight sm:text-base lg:text-lg">

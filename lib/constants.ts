@@ -62,7 +62,7 @@ export const STEPS = [
   {
     step: 1,
     title: "Inserisci richiesta",
-    description: "Raccontaci la tua esigenza tramite il chatbot in pochi minuti.",
+    description: "Raccontaci la tua esigenza in pochi minuti.",
   },
   {
     step: 2,

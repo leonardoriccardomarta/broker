@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ChatbotSnippet } from "@/components/ChatbotSnippet";
 import { Header } from "@/components/layout/Header";
 import { StickyMobileCta } from "@/components/layout/StickyMobileCta";
 import { SITE } from "@/lib/constants";
@@ -57,7 +56,6 @@ export default function RootLayout({
           </div>
         </footer>
         <StickyMobileCta />
-        <ChatbotSnippet />
       </body>
     </html>
   );

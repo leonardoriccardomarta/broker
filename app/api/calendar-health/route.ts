@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { isGoogleCalendarConfigured } from "@/lib/booking/config";
 import {
+  getBusyBlocks,
   listAccessibleCalendars,
   verifyCalendarAccess,
 } from "@/lib/google/busy-times";
@@ -22,40 +23,39 @@ export async function GET() {
   const calendarId = process.env.GOOGLE_CALENDAR_ID?.trim();
   const serviceAccount = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
 
-  let accessible: Awaited<ReturnType<typeof listAccessibleCalendars>> = [];
-
   try {
     const calendar = await getAuthorizedCalendarClient();
-    accessible = await listAccessibleCalendars(calendar);
-
-    const target = accessible.find((item) => item.id === calendarId);
-
-    if (!target) {
-      return NextResponse.json({
-        ok: false,
-        calendarId,
-        serviceAccount,
-        accessibleCalendars: accessible,
-        hint:
-          accessible.length === 0
-            ? "Il service account non vede nessun calendario. Condividi il calendario con l'email del service account."
-            : "GOOGLE_CALENDAR_ID non corrisponde a nessun calendario condiviso. Usa uno degli ID in accessibleCalendars.",
-      });
-    }
 
     const meta = await verifyCalendarAccess(calendar, calendarId!);
+
+    const now = new Date();
+    const later = new Date(now.getTime() + 60 * 60 * 1000);
+    await getBusyBlocks(calendar, calendarId!, now.toISOString(), later.toISOString());
+
+    const accessible = await listAccessibleCalendars(calendar).catch(() => []);
 
     return NextResponse.json({
       ok: true,
       calendarId,
       serviceAccount,
       calendarName: meta.summary,
-      accessRole: target.accessRole,
       accessibleCalendars: accessible,
+      note:
+        accessible.length === 0
+          ? "Normale per i service account: calendarList è spesso vuoto anche con accesso funzionante."
+          : undefined,
       hint: "Connessione al calendario riuscita.",
     });
   } catch (error) {
     console.error("[api/calendar-health]", error);
+
+    let accessible: Awaited<ReturnType<typeof listAccessibleCalendars>> = [];
+    try {
+      const calendar = await getAuthorizedCalendarClient();
+      accessible = await listAccessibleCalendars(calendar);
+    } catch {
+      // ignore secondary failure
+    }
 
     return NextResponse.json({
       ok: false,
@@ -63,10 +63,7 @@ export async function GET() {
       serviceAccount,
       accessibleCalendars: accessible,
       googleError: getGoogleErrorDetail(error),
-      hint:
-        accessible.length === 0
-          ? "Condividi il calendario con il service account (modifica eventi), poi attendi 1-2 minuti."
-          : "Controlla che GOOGLE_CALENDAR_ID corrisponda esattamente all'ID del calendario condiviso.",
+      hint: "Impossibile accedere al calendario configurato. Verifica GOOGLE_CALENDAR_ID e la condivisione col service account.",
     });
   }
 }

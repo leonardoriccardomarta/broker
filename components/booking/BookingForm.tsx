@@ -170,7 +170,7 @@ export function BookingForm() {
   }
 
   return (
-    <div className="rounded-3xl bg-white p-6 shadow-feature md:p-8">
+    <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-soft sm:rounded-3xl sm:p-6 md:p-8">
       <div className="mb-6 flex items-center gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
           <Calendar className="h-5 w-5" />
@@ -184,8 +184,8 @@ export function BookingForm() {
       </div>
 
       {step === "datetime" && (
-        <div className="space-y-6">
-          <div className="grid gap-6 lg:grid-cols-2">
+        <div className="space-y-5 sm:space-y-6">
+          <div className="grid gap-5 sm:gap-6 lg:grid-cols-2">
             <div>
               <p className="mb-3 text-sm font-medium text-midnight">Scegli il giorno</p>
               <MiniCalendar

@@ -27,19 +27,19 @@ export function Header() {
       }`}
     >
       <SectionContainer className="flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
           <Image
-            src="/images/logo/icon.svg"
+            src="/favicon.ico"
             alt=""
-            width={40}
-            height={40}
-            className="h-10 w-10"
+            width={36}
+            height={36}
+            className="h-9 w-9 shrink-0 rounded-lg sm:h-10 sm:w-10"
           />
-          <div>
-            <p className="text-base font-semibold text-midnight sm:text-lg">
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-midnight sm:text-base lg:text-lg">
               {SITE.name}
             </p>
-            <p className="text-xs text-black/50">{SITE.title}</p>
+            <p className="truncate text-[11px] text-black/50 sm:text-xs">{SITE.title}</p>
           </div>
         </Link>
 

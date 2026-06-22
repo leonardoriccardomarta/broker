@@ -47,7 +47,7 @@ export default function RootLayout({
     <html lang="it" className={`${jakarta.variable} scroll-smooth`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <Header />
-        <main className="pb-24 md:pb-0">{children}</main>
+        <main className="pb-20 md:pb-0">{children}</main>
         <Footer />
         <StickyMobileCta />
       </body>

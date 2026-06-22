@@ -117,25 +117,22 @@ export const STEPS = [
 
 export const TESTIMONIALS = [
   {
-    name: "Laura Bianchi",
-    location: "Milano",
+    initials: "M.R.",
+    label: "Cliente · Milano",
     text: "Avevo un rifiuto in banca e rischiavo di perdere la casa. Filippo ha ripianificato la pratica e trovato un mutuo migliore di quanto sperassi.",
     service: "Mutuo prima casa",
-    avatar: "/images/people/laura.jpg",
   },
   {
-    name: "Giuseppe Verdi",
-    location: "Roma",
+    initials: "S.T.",
+    label: "Cliente · Roma",
     text: "Lavoro a partita IVA e nessuna banca mi dava retta. In una settimana avevo più proposte chiare, senza costi nascosti.",
     service: "Prestito personale",
-    avatar: "/images/people/giuseppe.jpg",
   },
   {
-    name: "Anna Colombo",
-    location: "Torino",
+    initials: "L.P.",
+    label: "Cliente · Torino",
     text: "La cessione del quinto mi spaventava. Filippo ha spiegato tutto in modo semplice e oggi ho una rata che posso permettermi.",
     service: "Cessione del quinto",
-    avatar: "/images/people/anna.jpg",
   },
 ] as const;
 

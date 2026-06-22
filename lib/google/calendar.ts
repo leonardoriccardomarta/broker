@@ -5,6 +5,7 @@ import {
   slotsOverlap,
   type TimeSlot,
 } from "@/lib/booking/slots";
+import { getBusyBlocks } from "@/lib/google/busy-times";
 import { getAuthorizedCalendarClient } from "@/lib/google/auth";
 
 function getCalendarId(): string {
@@ -27,19 +28,7 @@ export async function getAvailableSlots(date: string): Promise<TimeSlot[]> {
   const timeMin = slots[0].start;
   const timeMax = slots[slots.length - 1].end;
 
-  const freeBusy = await calendar.freebusy.query({
-    requestBody: {
-      timeMin,
-      timeMax,
-      timeZone: bookingConfig.timezone,
-      items: [{ id: calendarId }],
-    },
-  });
-
-  const busyBlocks =
-    freeBusy.data.calendars?.[calendarId]?.busy?.filter(
-      (block) => block.start && block.end,
-    ) ?? [];
+  const busyBlocks = await getBusyBlocks(calendar, calendarId, timeMin, timeMax);
 
   return slots.filter((slot) => {
     const slotStart = new Date(slot.start);
@@ -49,8 +38,8 @@ export async function getAvailableSlots(date: string): Promise<TimeSlot[]> {
       slotsOverlap(
         slotStart,
         slotEnd,
-        new Date(block.start!),
-        new Date(block.end!),
+        new Date(block.start),
+        new Date(block.end),
       ),
     );
   });

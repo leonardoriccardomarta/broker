@@ -1,7 +1,15 @@
 import { NextResponse } from "next/server";
 import { isGoogleCalendarConfigured } from "@/lib/booking/config";
+import {
+  listAccessibleCalendars,
+  verifyCalendarAccess,
+} from "@/lib/google/busy-times";
 import { getAuthorizedCalendarClient } from "@/lib/google/auth";
-import { getGoogleCalendarErrorMessage } from "@/lib/google/errors";
+
+function getGoogleErrorDetail(error: unknown): string | undefined {
+  const err = error as { message?: string; errors?: { message?: string }[] };
+  return err.errors?.[0]?.message ?? err.message;
+}
 
 export async function GET() {
   if (!isGoogleCalendarConfigured()) {
@@ -12,37 +20,53 @@ export async function GET() {
   }
 
   const calendarId = process.env.GOOGLE_CALENDAR_ID?.trim();
+  const serviceAccount = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
+
+  let accessible: Awaited<ReturnType<typeof listAccessibleCalendars>> = [];
 
   try {
     const calendar = await getAuthorizedCalendarClient();
-    const now = new Date();
-    const later = new Date(now.getTime() + 60 * 60 * 1000);
+    accessible = await listAccessibleCalendars(calendar);
 
-    const freeBusy = await calendar.freebusy.query({
-      requestBody: {
-        timeMin: now.toISOString(),
-        timeMax: later.toISOString(),
-        timeZone: "Europe/Rome",
-        items: [{ id: calendarId! }],
-      },
-    });
+    const target = accessible.find((item) => item.id === calendarId);
 
-    const entry = freeBusy.data.calendars?.[calendarId!];
+    if (!target) {
+      return NextResponse.json({
+        ok: false,
+        calendarId,
+        serviceAccount,
+        accessibleCalendars: accessible,
+        hint:
+          accessible.length === 0
+            ? "Il service account non vede nessun calendario. Condividi il calendario con l'email del service account."
+            : "GOOGLE_CALENDAR_ID non corrisponde a nessun calendario condiviso. Usa uno degli ID in accessibleCalendars.",
+      });
+    }
+
+    const meta = await verifyCalendarAccess(calendar, calendarId!);
 
     return NextResponse.json({
       ok: true,
       calendarId,
-      shared: Boolean(entry),
-      hint: entry
-        ? "Connessione al calendario riuscita."
-        : "Calendario non accessibile: condividilo con il service account.",
+      serviceAccount,
+      calendarName: meta.summary,
+      accessRole: target.accessRole,
+      accessibleCalendars: accessible,
+      hint: "Connessione al calendario riuscita.",
     });
   } catch (error) {
     console.error("[api/calendar-health]", error);
+
     return NextResponse.json({
       ok: false,
       calendarId,
-      hint: getGoogleCalendarErrorMessage(error),
+      serviceAccount,
+      accessibleCalendars: accessible,
+      googleError: getGoogleErrorDetail(error),
+      hint:
+        accessible.length === 0
+          ? "Condividi il calendario con il service account (modifica eventi), poi attendi 1-2 minuti."
+          : "Controlla che GOOGLE_CALENDAR_ID corrisponda esattamente all'ID del calendario condiviso.",
     });
   }
 }

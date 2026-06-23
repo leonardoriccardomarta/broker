@@ -1,10 +1,27 @@
 import type { calendar_v3 } from "googleapis";
+import { fromZonedTime } from "date-fns-tz";
 import { bookingConfig } from "@/lib/booking/config";
 
 export type BusyBlock = {
   start: string;
   end: string;
 };
+
+function normalizeEventBlock(start: string, end: string): BusyBlock {
+  const { timezone } = bookingConfig;
+
+  if (start.includes("T")) {
+    return { start, end };
+  }
+
+  const dayStart = fromZonedTime(`${start}T00:00:00`, timezone);
+  const dayEnd = fromZonedTime(`${end}T00:00:00`, timezone);
+
+  return {
+    start: dayStart.toISOString(),
+    end: dayEnd.toISOString(),
+  };
+}
 
 export async function getBusyBlocks(
   calendar: calendar_v3.Calendar,
@@ -30,7 +47,7 @@ export async function getBusyBlocks(
     const end = event.end?.dateTime ?? event.end?.date;
     if (!start || !end) continue;
 
-    blocks.push({ start, end });
+    blocks.push(normalizeEventBlock(start, end));
   }
 
   return blocks;

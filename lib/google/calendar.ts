@@ -1,3 +1,5 @@
+import { addDays } from "date-fns";
+import { fromZonedTime } from "date-fns-tz";
 import { bookingConfig } from "@/lib/booking/config";
 import {
   generateSlotsForDate,
@@ -25,8 +27,12 @@ export async function getAvailableSlots(date: string): Promise<TimeSlot[]> {
   const calendar = await getAuthorizedCalendarClient();
   const calendarId = getCalendarId();
 
-  const timeMin = slots[0].start;
-  const timeMax = slots[slots.length - 1].end;
+  const { timezone } = bookingConfig;
+  const timeMin = fromZonedTime(`${date}T00:00:00`, timezone).toISOString();
+  const timeMax = addDays(
+    fromZonedTime(`${date}T00:00:00`, timezone),
+    1,
+  ).toISOString();
 
   const busyBlocks = await getBusyBlocks(calendar, calendarId, timeMin, timeMax);
 

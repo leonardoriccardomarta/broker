@@ -17,6 +17,29 @@ export type TimeSlot = {
 };
 
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const SATURDAY = 6;
+const DEFAULT_SATURDAY_END = "13:00";
+
+function resolveDayEnd(date: string, timezone: string, businessEndHour: number): Date {
+  const { workingDays, lunchBreak } = bookingConfig;
+  const dayOfWeek = getDay(toZonedTime(parseISO(`${date}T12:00:00`), timezone));
+
+  if (dayOfWeek === SATURDAY && workingDays.includes(SATURDAY)) {
+    const endTime = lunchBreak?.start ?? DEFAULT_SATURDAY_END;
+    return fromZonedTime(`${date}T${endTime}:00`, timezone);
+  }
+
+  return fromZonedTime(
+    `${date}T${String(businessEndHour).padStart(2, "0")}:00:00`,
+    timezone,
+  );
+}
+
+function isSaturdayHalfDay(date: string, timezone: string): boolean {
+  const { workingDays } = bookingConfig;
+  const dayOfWeek = getDay(toZonedTime(parseISO(`${date}T12:00:00`), timezone));
+  return dayOfWeek === SATURDAY && workingDays.includes(SATURDAY);
+}
 
 function overlapsLunchBreak(
   slotStart: Date,
@@ -73,16 +96,17 @@ export function generateSlotsForDate(date: string): TimeSlot[] {
     `${date}T${String(businessStartHour).padStart(2, "0")}:00:00`,
     timezone,
   );
-  const dayEnd = fromZonedTime(
-    `${date}T${String(businessEndHour).padStart(2, "0")}:00:00`,
-    timezone,
-  );
+  const dayEnd = resolveDayEnd(date, timezone, businessEndHour);
+  const saturdayHalfDay = isSaturdayHalfDay(date, timezone);
 
   while (isBefore(cursor, dayEnd)) {
     const end = addMinutes(cursor, slotDurationMinutes);
     if (isBefore(dayEnd, end)) break;
 
-    if (!isBefore(cursor, minStart) && !overlapsLunchBreak(cursor, end, date, timezone)) {
+    const blockedByLunch =
+      !saturdayHalfDay && overlapsLunchBreak(cursor, end, date, timezone);
+
+    if (!isBefore(cursor, minStart) && !blockedByLunch) {
       const zonedStart = toZonedTime(cursor, timezone);
       slots.push({
         start: cursor.toISOString(),

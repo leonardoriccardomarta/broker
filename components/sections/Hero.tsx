@@ -10,15 +10,7 @@ export function Hero() {
     <section className="relative overflow-hidden bg-hero pt-28 pb-16 md:pt-36 md:pb-24">
       <SectionContainer>
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-8">
-          <FadeIn className="relative lg:col-span-7">
-            <Image
-              src="/images/hero/star.svg"
-              alt=""
-              width={80}
-              height={80}
-              className="absolute -top-8 right-8 hidden opacity-80 md:block"
-              aria-hidden
-            />
+          <FadeIn className="lg:col-span-7">
             <ConsultantIntro photoSize="sm" className="max-w-xl" />
             <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight text-midnight text-balance sm:text-5xl lg:text-6xl">
               {HERO.headline}

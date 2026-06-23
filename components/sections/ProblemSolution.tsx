@@ -55,11 +55,11 @@ export function ProblemSolution() {
             </div>
             <div className="relative overflow-hidden rounded-2xl shadow-feature">
               <Image
-                src="/images/photos/consulting.jpg"
-                alt="Consulenza mutui personalizzata"
+                src="/images/photos/family-home.jpg"
+                alt="Casa dei sogni: trovare il mutuo giusto"
                 width={720}
                 height={480}
-                className="h-64 w-full object-cover md:h-80"
+                className="h-64 w-full object-cover object-center md:h-80"
               />
             </div>
           </div>

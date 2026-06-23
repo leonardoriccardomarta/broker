@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  BOOKING_HREF,
   NAV_LINKS,
   PRIVACY_PATH,
   SECTION_IDS,
@@ -58,30 +57,22 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href={BOOKING_HREF}
-                  className="text-sm font-medium text-primary transition-colors hover:text-primary-dark"
-                >
-                  Prenota consulenza
-                </a>
-              </li>
-              <li>
-                <Link
-                  href={PRIVACY_PATH}
-                  className="text-sm text-black/65 transition-colors hover:text-primary"
-                >
-                  Privacy
-                </Link>
-              </li>
             </ul>
           </div>
         </div>
 
-        <p className="mt-6 border-t border-slate-200 pt-4 text-center text-xs leading-relaxed text-black/40">
-          © {new Date().getFullYear()} {SITE.name}. Tutti i diritti riservati.
-          <span className="mx-auto mt-2 block max-w-2xl">{SITE.legalLine}</span>
-        </p>
+        <div className="mt-6 border-t border-slate-200 pt-4 text-center">
+          <Link
+            href={PRIVACY_PATH}
+            className="text-sm font-medium text-black/60 transition-colors hover:text-primary"
+          >
+            Informativa Privacy
+          </Link>
+          <p className="mt-3 text-xs leading-relaxed text-black/40">
+            © {new Date().getFullYear()} {SITE.name}. Tutti i diritti riservati.
+            <span className="mx-auto mt-2 block max-w-2xl">{SITE.legalLine}</span>
+          </p>
+        </div>
       </SectionContainer>
     </footer>
   );

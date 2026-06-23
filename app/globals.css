@@ -73,10 +73,6 @@
     width: max-content;
   }
 
-  .testimonial-track:hover {
-    animation-play-state: paused;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .testimonial-track {
       animation: none;

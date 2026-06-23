@@ -135,7 +135,7 @@ export const TESTIMONIALS = [
   },
   {
     initials: "P.M.",
-    label: "Cliente · Monza",
+    label: "Cliente · Dalmine",
     text: "Prima casa, tanti dubbi su tassi e spese. Mi ha guidato passo passo fino all'approvazione, sempre chiaro e disponibile.",
     service: "Mutuo prima casa",
   },

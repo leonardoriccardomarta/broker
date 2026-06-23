@@ -23,6 +23,8 @@ export const NAV_LINKS = [
 
 export const BOOKING_HREF = `#${SECTION_IDS.prenota}`;
 
+export const PRIVACY_PATH = "/privacy" as const;
+
 export const HERO = {
   headline: "Il mutuo giusto per la casa che desideri",
   subheadline:

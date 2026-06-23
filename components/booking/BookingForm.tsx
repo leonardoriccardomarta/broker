@@ -11,9 +11,11 @@ import {
   Phone,
   User,
 } from "lucide-react";
+import Link from "next/link";
 import { MiniCalendar } from "@/components/booking/MiniCalendar";
 import { Button } from "@/components/ui/Button";
 import { clientBookingConfig as defaults } from "@/lib/booking/client-config";
+import { PRIVACY_PATH } from "@/lib/constants";
 import { parseDateKey } from "@/lib/booking/parse-date";
 
 type Slot = {
@@ -65,6 +67,7 @@ export function BookingForm() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [note, setNote] = useState("");
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
 
   const selectedDateLabel = selectedDate
     ? format(parseDateKey(selectedDate), "EEEE d MMMM", { locale: it })
@@ -126,6 +129,7 @@ export function BookingForm() {
           email,
           phone,
           note,
+          privacyAccepted,
         }),
       });
 
@@ -330,6 +334,28 @@ export function BookingForm() {
             />
           </div>
 
+          <label className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-black/65">
+            <input
+              type="checkbox"
+              required
+              checked={privacyAccepted}
+              onChange={(e) => setPrivacyAccepted(e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 text-primary focus:ring-primary/30"
+            />
+            <span>
+              Ho letto l&apos;{" "}
+              <Link
+                href={PRIVACY_PATH}
+                target="_blank"
+                className="font-medium text-primary hover:underline"
+              >
+                informativa privacy
+              </Link>{" "}
+              e acconsento al trattamento dei miei dati per gestire la
+              prenotazione.
+            </span>
+          </label>
+
           {error && (
             <p className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">
               {error}
@@ -349,7 +375,7 @@ export function BookingForm() {
               type="submit"
               variant="primary"
               className="w-full flex-1"
-              disabled={submitting}
+              disabled={submitting || !privacyAccepted}
             >
               {submitting ? (
                 <span className="inline-flex items-center">

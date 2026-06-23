@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   BOOKING_HREF,
   NAV_LINKS,
+  PRIVACY_PATH,
   SECTION_IDS,
   SERVICES,
   SITE,
@@ -64,6 +65,14 @@ export function Footer() {
                 >
                   Prenota consulenza
                 </a>
+              </li>
+              <li>
+                <Link
+                  href={PRIVACY_PATH}
+                  className="text-sm text-black/65 transition-colors hover:text-primary"
+                >
+                  Privacy
+                </Link>
               </li>
             </ul>
           </div>

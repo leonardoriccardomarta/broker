@@ -22,7 +22,17 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Richiesta non valida." }, { status: 400 });
   }
 
-  const { start, name, email, phone, note } = body as Record<string, unknown>;
+  const { start, name, email, phone, note, privacyAccepted } = body as Record<
+    string,
+    unknown
+  >;
+
+  if (privacyAccepted !== true) {
+    return NextResponse.json(
+      { error: "Devi accettare l'informativa privacy per prenotare." },
+      { status: 400 },
+    );
+  }
 
   if (typeof start !== "string" || !start) {
     return NextResponse.json({ error: "Seleziona una fascia oraria." }, { status: 400 });

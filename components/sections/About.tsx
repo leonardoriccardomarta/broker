@@ -1,14 +1,14 @@
 import Image from "next/image";
-import { Award, Shield, HeartHandshake } from "lucide-react";
+import { HeartHandshake, MapPin, Shield, Users } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { ABOUT } from "@/lib/constants";
+import { ABOUT, ABOUT_HIGHLIGHTS } from "@/lib/constants";
 
-const highlights = [
-  { icon: Award, text: "Oltre 10 anni di esperienza" },
-  { icon: Shield, text: "Indipendente dalle banche" },
-  { icon: HeartHandshake, text: "Consulenza sempre gratuita" },
-];
+const HIGHLIGHT_ICONS = {
+  clients: Users,
+  company: Shield,
+  area: MapPin,
+} as const;
 
 export function About() {
   return (
@@ -47,14 +47,18 @@ export function About() {
             </p>
 
             <ul className="mt-10 space-y-4">
-              {highlights.map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <span className="font-medium text-midnight">{text}</span>
-                </li>
-              ))}
+              {ABOUT_HIGHLIGHTS.map(({ id, text }) => {
+                const Icon = HIGHLIGHT_ICONS[id] ?? HeartHandshake;
+
+                return (
+                  <li key={id} className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="font-medium text-midnight">{text}</span>
+                  </li>
+                );
+              })}
             </ul>
           </FadeIn>
         </div>

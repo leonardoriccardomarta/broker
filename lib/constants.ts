@@ -1,7 +1,8 @@
 export const SITE = {
   name: "Filippo Carriero",
   title: "Mediatore Creditizio",
-  tagline: "Consulenza finanziaria indipendente",
+  tagline: "Collaboratore di Euroansa Spa",
+  oamRegistration: "Iscrizione OAM M191",
 } as const;
 
 export const SECTION_IDS = {
@@ -22,11 +23,12 @@ export const NAV_LINKS = [
 export const BOOKING_HREF = `#${SECTION_IDS.prenota}`;
 
 export const HERO = {
+  badge: "Collaboratore di Euroansa Spa",
   headline: "Il finanziamento giusto per la casa che desideri",
   subheadline:
-    "Consulenza gratuita e indipendente su mutui, prestiti e cessione del quinto. Confronto le migliori banche per te, senza conflitto di interessi.",
+    "Consulenza gratuita su mutui, prestiti e cessione del quinto. Lavoro in Lombardia, soprattutto in provincia di Bergamo e Milano. Confronto le migliori banche per trovare la soluzione più adatta a te.",
   cta: "Prenota una consulenza gratuita",
-  trust: "+100 famiglie accompagnate",
+  trust: "+500 clienti aiutati",
 } as const;
 
 export const PROBLEMS = [
@@ -124,13 +126,13 @@ export const TESTIMONIALS = [
   },
   {
     initials: "S.T.",
-    label: "Cliente · Roma",
+    label: "Cliente · Bergamo",
     text: "Lavoro a partita IVA e nessuna banca mi dava retta. In una settimana avevo più proposte chiare, senza costi nascosti.",
     service: "Prestito personale",
   },
   {
     initials: "L.P.",
-    label: "Cliente · Torino",
+    label: "Cliente · Treviglio",
     text: "La cessione del quinto mi spaventava. Filippo ha spiegato tutto in modo semplice e oggi ho una rata che posso permettermi.",
     service: "Cessione del quinto",
   },
@@ -138,12 +140,18 @@ export const TESTIMONIALS = [
 
 export const ABOUT = {
   name: "Filippo Carriero",
-  role: "Mediatore creditizio",
+  role: "Mediatore creditizio · Euroansa Spa",
   description:
-    "Da oltre 10 anni aiuto famiglie e professionisti a scegliere il finanziamento giusto. Lavoro in modo indipendente dalle banche: il mio unico obiettivo è la soluzione più vantaggiosa per te. La prima consulenza è gratuita e senza alcun impegno.",
+    "Aiuto famiglie e professionisti in Lombardia, con particolare presenza in provincia di Bergamo e Milano, a scegliere il finanziamento giusto. Come collaboratore di Euroansa Spa confronto le offerte sul mercato per individuare la soluzione più vantaggiosa per te. La prima consulenza è gratuita e senza alcun impegno.",
   quote:
     "Acquistare casa o richiedere un prestito è una decisione importante. Con la giusta pianificazione diventa un investimento sicuro, non un rischio.",
 } as const;
+
+export const ABOUT_HIGHLIGHTS = [
+  { id: "clients", text: "+500 clienti aiutati" },
+  { id: "company", text: "Collaboratore di Euroansa Spa" },
+  { id: "area", text: "Lombardia: Bergamo e Milano" },
+] as const;
 
 export const FINAL_CTA = {
   headline: "Prenota la tua consulenza gratuita",
@@ -153,8 +161,8 @@ export const FINAL_CTA = {
 } as const;
 
 export const TRUST_STATS = [
-  { value: "+100", label: "Clienti accompagnati" },
-  { value: "10+", label: "Anni di esperienza" },
+  { value: "+500", label: "Clienti aiutati" },
+  { value: "BG · MI", label: "Bergamo e Milano" },
   { value: "24h", label: "Prima risposta" },
   { value: "0€", label: "Consulenza gratuita" },
 ] as const;

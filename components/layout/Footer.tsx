@@ -71,6 +71,7 @@ export function Footer() {
 
         <p className="mt-6 border-t border-slate-200 pt-4 text-center text-xs text-black/40">
           © {new Date().getFullYear()} {SITE.name}. Tutti i diritti riservati.
+          <span className="mt-1 block">{SITE.oamRegistration}</span>
         </p>
       </SectionContainer>
     </footer>

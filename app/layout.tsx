@@ -15,10 +15,12 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Mediatore Creditizio | Consulenza Gratuita",
   description:
-    "Ottieni il miglior finanziamento per le tue esigenze. Mutui, prestiti, cessione del quinto. Consulenza gratuita e senza impegno.",
+    "Mediatore creditizio in Lombardia, provincia di Bergamo e Milano. Mutui, prestiti, cessione del quinto. Consulenza gratuita e senza impegno.",
   keywords: [
     "mediatore creditizio",
-    "mutui",
+    "mutui Bergamo",
+    "mutui Milano",
+    "Lombardia",
     "prestiti personali",
     "cessione del quinto",
     "consolidamento debiti",

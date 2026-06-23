@@ -21,7 +21,7 @@ export function Hero() {
             />
             <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-4 py-2 text-sm font-medium text-primary shadow-soft backdrop-blur-sm">
               <CheckCircle2 className="h-4 w-4" />
-              Mediatore creditizio indipendente
+              {HERO.badge}
             </div>
             <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight text-midnight text-balance sm:text-5xl lg:text-6xl">
               {HERO.headline}

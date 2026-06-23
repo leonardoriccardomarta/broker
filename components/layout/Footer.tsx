@@ -10,7 +10,7 @@ import { SectionContainer } from "@/components/ui/SectionContainer";
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50 text-midnight">
+    <footer className="border-t border-slate-200 bg-slate-50 pb-40 text-midnight md:pb-0">
       <SectionContainer className="py-6 md:py-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-2">
@@ -64,7 +64,7 @@ export function Footer() {
         <div className="mt-6 border-t border-slate-200 pt-4 text-center">
           <Link
             href={PRIVACY_PATH}
-            className="text-sm font-medium text-black/60 transition-colors hover:text-primary"
+            className="relative z-10 inline-block py-1 text-sm font-medium text-black/60 transition-colors hover:text-primary"
           >
             Informativa Privacy
           </Link>

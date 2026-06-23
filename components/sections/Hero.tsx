@@ -1,11 +1,10 @@
 import Image from "next/image";
 import { Users } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import { ConsultantIntro } from "@/components/ui/ConsultantIntro";
+import { ContactActions } from "@/components/ui/ContactActions";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { BOOKING_HREF, HERO } from "@/lib/constants";
-
+import { HERO } from "@/lib/constants";
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-hero pt-28 pb-16 md:pt-36 md:pb-24">
@@ -27,10 +26,8 @@ export function Hero() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-black/65 md:text-xl">
               {HERO.subheadline}
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <Button href={BOOKING_HREF} variant="primary" size="lg">
-                {HERO.cta}
-              </Button>
+            <div className="mt-8 flex flex-col gap-4">
+              <ContactActions layout="hero" />
               <div className="flex items-center gap-2 text-sm font-medium text-black/60">
                 <Users className="h-5 w-5 text-accent" />
                 {HERO.trust}

@@ -127,6 +127,18 @@ export const TESTIMONIALS = [
     text: "Dovevamo ristrutturare casa e il mutuo in banca sembrava troppo caro. Filippo ha trovato condizioni migliori e ci ha seguito fino alla firma.",
     service: "Mutuo ristrutturazione",
   },
+  {
+    initials: "G.F.",
+    label: "Cliente · Seriate",
+    text: "Per la seconda casa avevamo paura di non farcela. Filippo ha confrontato più banche e trovato una soluzione con rata sostenibile.",
+    service: "Mutuo seconda casa",
+  },
+  {
+    initials: "P.M.",
+    label: "Cliente · Monza",
+    text: "Prima casa, tanti dubbi su tassi e spese. Mi ha guidato passo passo fino all'approvazione, sempre chiaro e disponibile.",
+    service: "Mutuo prima casa",
+  },
 ] as const;
 
 export const ABOUT = {

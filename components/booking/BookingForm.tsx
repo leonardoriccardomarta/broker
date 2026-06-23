@@ -163,11 +163,11 @@ export function BookingForm() {
           Prenotazione confermata
         </h3>
         <p className="mt-3 text-black/65">
-          Appuntamento fissato per{" "}
+          Preferenza registrata per{" "}
           <span className="font-medium text-midnight">{when}</span>.
         </p>
         <p className="mt-2 text-sm text-black/50">
-          Ti contatterò all&apos;orario scelto. A presto!
+          Ti contatterò al più presto per confermare, prima dell&apos;appuntamento.
         </p>
       </div>
     );

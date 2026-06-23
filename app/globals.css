@@ -67,6 +67,25 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .testimonial-track {
+    animation: testimonial-scroll 45s linear infinite;
+    width: max-content;
+  }
+
+  .testimonial-track:hover {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .testimonial-track {
+      animation: none;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
 }
 
 @keyframes fade-in-up {
@@ -77,5 +96,14 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes testimonial-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }

@@ -122,8 +122,8 @@ export const TESTIMONIALS = [
   {
     initials: "S.T.",
     label: "Cliente · Treviglio",
-    text: "Cercavo liquidità per un imprevisto. Filippo mi ha orientato sul prestito più adatto, con tempi rapidi e tutto spiegato in modo semplice.",
-    service: "Prestito personale",
+    text: "Dovevamo ristrutturare casa e il mutuo in banca sembrava troppo caro. Filippo ha trovato condizioni migliori e ci ha seguito fino alla firma.",
+    service: "Mutuo ristrutturazione",
   },
 ] as const;
 

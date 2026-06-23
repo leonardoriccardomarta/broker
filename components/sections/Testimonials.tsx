@@ -13,7 +13,7 @@ export function Testimonials() {
           <SectionHeading
             eyebrow="Recensioni"
             title="Cosa dicono i clienti"
-            subtitle="Feedback raccolti dopo consulenze e pratiche concluse con successo."
+            subtitle="Feedback di clienti dopo consulenze e pratiche mutuo concluse con successo."
           />
         </FadeIn>
 

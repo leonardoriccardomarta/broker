@@ -8,8 +8,8 @@ type ConsultantIntroProps = {
 };
 
 const PHOTO_SIZES = {
-  sm: { box: "h-12 w-12", image: 48 },
-  md: { box: "h-16 w-16", image: 64 },
+  sm: { box: "h-14 w-14", image: 56 },
+  md: { box: "h-20 w-20", image: 80 },
 } as const;
 
 export function ConsultantIntro({

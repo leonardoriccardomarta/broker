@@ -21,7 +21,7 @@ export function Footer() {
               <p className="font-semibold">{SITE.name}</p>
               <p className="text-sm text-black/55">{SITE.title}</p>
             </Link>
-            <p className="mt-2 text-sm text-black/50">{SITE.tagline}</p>
+            <p className="mt-2 text-sm text-black/50">{SITE.areaLine}</p>
           </div>
 
           <div>
@@ -69,9 +69,9 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-6 border-t border-slate-200 pt-4 text-center text-xs text-black/40">
+        <p className="mt-6 border-t border-slate-200 pt-4 text-center text-xs leading-relaxed text-black/40">
           © {new Date().getFullYear()} {SITE.name}. Tutti i diritti riservati.
-          <span className="mt-1 block">{SITE.oamRegistration}</span>
+          <span className="mx-auto mt-2 block max-w-2xl">{SITE.legalLine}</span>
         </p>
       </SectionContainer>
     </footer>

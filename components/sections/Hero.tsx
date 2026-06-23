@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { CheckCircle2, Users } from "lucide-react";
+import { Users } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ConsultantIntro } from "@/components/ui/ConsultantIntro";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { BOOKING_HREF, HERO } from "@/lib/constants";
@@ -19,10 +20,7 @@ export function Hero() {
               className="absolute -top-8 right-8 hidden opacity-80 md:block"
               aria-hidden
             />
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-4 py-2 text-sm font-medium text-primary shadow-soft backdrop-blur-sm">
-              <CheckCircle2 className="h-4 w-4" />
-              {HERO.badge}
-            </div>
+            <ConsultantIntro photoSize="sm" className="max-w-xl" />
             <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight text-midnight text-balance sm:text-5xl lg:text-6xl">
               {HERO.headline}
             </h1>
@@ -46,7 +44,7 @@ export function Hero() {
               <div className="relative overflow-hidden rounded-[2rem] shadow-feature">
                 <Image
                   src="/images/photos/hero-keys.jpg"
-                  alt="Consulenza per mutui e finanziamenti"
+                  alt="Consulenza per mutui"
                   width={640}
                   height={520}
                   priority
@@ -54,8 +52,12 @@ export function Hero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-midnight/50 via-transparent to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                  <p className="text-sm font-medium text-white/80">Consulenza gratuita</p>
-                  <p className="text-lg font-semibold">Mutui, prestiti e cessione del quinto</p>
+                  <p className="text-sm font-medium text-white/80">
+                    {HERO.imageCaption}
+                  </p>
+                  <p className="text-lg font-semibold">
+                    Prima casa, surroga e ristrutturazione
+                  </p>
                 </div>
               </div>
             </div>

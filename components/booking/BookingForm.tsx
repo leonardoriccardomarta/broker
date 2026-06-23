@@ -326,7 +326,7 @@ export function BookingForm() {
               value={note}
               onChange={(e) => setNote(e.target.value)}
               className="w-full resize-none rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
-              placeholder="Es. mutuo prima casa, prestito personale, consolidamento..."
+              placeholder="Es. mutuo prima casa, surroga, prestito personale..."
             />
           </div>
 

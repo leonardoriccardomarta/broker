@@ -1,8 +1,9 @@
 export const SITE = {
   name: "Filippo Carriero",
-  title: "Mediatore Creditizio",
-  tagline: "Collaboratore di Euroansa Spa",
-  oamRegistration: "Iscrizione OAM M191",
+  title: "Consulente Creditizio",
+  legalLine:
+    "Consulente Creditizio di Euroansa S.p.A., Società di mediazione creditizia OAM M191",
+  areaLine: "Lombardia, provincia di Bergamo e Milano",
 } as const;
 
 export const SECTION_IDS = {
@@ -14,7 +15,7 @@ export const SECTION_IDS = {
 } as const;
 
 export const NAV_LINKS = [
-  { label: "Servizi", href: `#${SECTION_IDS.servizi}` },
+  { label: "Mutui", href: `#${SECTION_IDS.servizi}` },
   { label: "Come funziona", href: `#${SECTION_IDS.comeFunziona}` },
   { label: "Recensioni", href: `#${SECTION_IDS.recensioni}` },
   { label: "Chi sono", href: `#${SECTION_IDS.chiSono}` },
@@ -23,73 +24,64 @@ export const NAV_LINKS = [
 export const BOOKING_HREF = `#${SECTION_IDS.prenota}`;
 
 export const HERO = {
-  badge: "Collaboratore di Euroansa Spa",
-  headline: "Il finanziamento giusto per la casa che desideri",
+  headline: "Il mutuo giusto per la casa che desideri",
   subheadline:
-    "Consulenza gratuita su mutui, prestiti e cessione del quinto. Lavoro in Lombardia, soprattutto in provincia di Bergamo e Milano. Confronto le migliori banche per trovare la soluzione più adatta a te.",
+    "Consulenza gratuita su mutui in Lombardia, soprattutto in provincia di Bergamo e Milano. Confronto le migliori banche per trovare tasso e rata più adatti a te.",
   cta: "Prenota una consulenza gratuita",
   trust: "+500 clienti aiutati",
+  imageCaption: "Consulenza mutui gratuita",
 } as const;
 
 export const PROBLEMS = [
   {
-    title: "Rischio di segnalazione in CRIF",
+    title: "Rifiuto in banca",
     description:
-      "Una richiesta respinta può compromettere le prossime trattative. Serve una strategia prima di presentarsi in banca.",
+      "Un mutuo respinto può compromettere le prossime richieste. Serve una strategia prima di ripresentarsi.",
   },
   {
-    title: "Costi e condizioni poco chiare",
+    title: "Tassi difficili da confrontare",
     description:
-      "Spese nascoste, tassi e commissioni difficili da confrontare tra un istituto e l'altro.",
+      "Spese, tassi e condizioni cambiano tra un istituto e l'altro. Senza un confronto chiaro rischi di pagare di più.",
   },
   {
-    title: "Burocrazia che rallenta tutto",
+    title: "Burocrazia e tempi stretti",
     description:
-      "Documenti, iter bancari e tempi lunghi: senza guida rischi di perdere l'immobile o la liquidità che ti serve.",
-  },
-  {
-    title: "Conflitto di interessi con le banche",
-    description:
-      "Non tutti i consulenti lavorano per te. Io scelgo sempre la soluzione più conveniente per le tue esigenze.",
+      "Documenti, perizie e iter bancari: senza guida rischi di perdere l'immobile o di allungare i tempi.",
   },
 ] as const;
 
 export const SOLUTION = {
-  title: "Prima la pianificazione, poi il finanziamento",
+  title: "Ti aiuto a trovare il mutuo migliore",
   description:
-    "Analizzo la tua situazione, confronto le offerte sul mercato e ti accompagno fino all'approvazione. Trasparenza totale su costi e tempi, senza impegno e senza sorprese.",
+    "Analizzo la tua situazione, confronto le offerte sul mercato e ti accompagno fino all'approvazione in banca. Trasparenza su costi e tempi, senza impegno.",
 } as const;
 
-export const SERVICES = [
-  {
-    title: "Mutui",
-    description:
-      "Confronto tra le principali banche per trovare il tasso e la rata più adatti al tuo budget.",
-    benefit: "Risparmi sulle rate",
-    icon: "/images/features/mutuo.svg",
-  },
+export const PRIMARY_SERVICE = {
+  title: "Mutui",
+  description:
+    "Prima casa, surroga o ristrutturazione: confronto le principali banche per trovare il tasso e la rata più adatti al tuo budget.",
+  benefit: "Il mio focus principale",
+  icon: "/images/features/mutuo.svg",
+} as const;
+
+export const SECONDARY_SERVICES = [
   {
     title: "Prestiti personali",
     description:
-      "Liquidità rapida con condizioni chiare fin dall'inizio, anche se hai già ricevuto un rifiuto.",
-    benefit: "Risposta in tempi brevi",
+      "Liquidità con condizioni chiare, anche in casi più complessi.",
+    benefit: "Su richiesta",
     icon: "/images/features/prestito.svg",
   },
   {
     title: "Cessione del quinto",
     description:
-      "Soluzione dedicata a dipendenti pubblici, privati e pensionati con rate gestibili e tasso fisso.",
-    benefit: "Rate sotto controllo",
+      "Per dipendenti e pensionati che cercano una rata gestibile e tasso fisso.",
+    benefit: "Su richiesta",
     icon: "/images/features/cessione.svg",
   },
-  {
-    title: "Consolidamento debiti",
-    description:
-      "Unisci più finanziamenti in un'unica rata più leggera e riprendi il controllo delle tue finanze.",
-    benefit: "Una sola rata",
-    icon: "/images/features/consolidamento.svg",
-  },
 ] as const;
+
+export const SERVICES = [PRIMARY_SERVICE, ...SECONDARY_SERVICES] as const;
 
 export const STEPS = [
   {
@@ -100,20 +92,17 @@ export const STEPS = [
   {
     step: 2,
     title: "Analisi gratuita",
-    description:
-      "Valutiamo insieme la tua situazione e individuiamo la strada migliore.",
+    description: "Valutiamo insieme importo, reddito e obiettivo del mutuo.",
   },
   {
     step: 3,
     title: "Confronto banche",
-    description:
-      "Seleziono le offerte più vantaggiose senza legami con gli istituti.",
+    description: "Seleziono le offerte mutuo più vantaggiose per il tuo profilo.",
   },
   {
     step: 4,
     title: "Approvazione",
-    description:
-      "Ti seguo nella pratica fino alla delibera e alla firma in banca.",
+    description: "Ti seguo nella pratica fino alla delibera e alla firma.",
   },
 ] as const;
 
@@ -125,36 +114,35 @@ export const TESTIMONIALS = [
     service: "Mutuo prima casa",
   },
   {
-    initials: "S.T.",
+    initials: "A.B.",
     label: "Cliente · Bergamo",
-    text: "Lavoro a partita IVA e nessuna banca mi dava retta. In una settimana avevo più proposte chiare, senza costi nascosti.",
-    service: "Prestito personale",
+    text: "Volevo la surroga per abbassare la rata. In pochi giorni avevo un confronto chiaro tra più banche, senza costi nascosti.",
+    service: "Surroga mutuo",
   },
   {
-    initials: "L.P.",
+    initials: "S.T.",
     label: "Cliente · Treviglio",
-    text: "La cessione del quinto mi spaventava. Filippo ha spiegato tutto in modo semplice e oggi ho una rata che posso permettermi.",
-    service: "Cessione del quinto",
+    text: "Cercavo liquidità per un imprevisto. Filippo mi ha orientato sul prestito più adatto, con tempi rapidi e tutto spiegato in modo semplice.",
+    service: "Prestito personale",
   },
 ] as const;
 
 export const ABOUT = {
   name: "Filippo Carriero",
-  role: "Mediatore creditizio · Euroansa Spa",
   description:
-    "Aiuto famiglie e professionisti in Lombardia, con particolare presenza in provincia di Bergamo e Milano, a scegliere il finanziamento giusto. Come collaboratore di Euroansa Spa confronto le offerte sul mercato per individuare la soluzione più vantaggiosa per te. La prima consulenza è gratuita e senza alcun impegno.",
+    "Mi occupo soprattutto di mutui per famiglie e professionisti in Lombardia, con particolare presenza in provincia di Bergamo e Milano. Confronto le offerte sul mercato per individuare la soluzione più vantaggiosa. La prima consulenza è gratuita e senza impegno.",
   quote:
-    "Acquistare casa o richiedere un prestito è una decisione importante. Con la giusta pianificazione diventa un investimento sicuro, non un rischio.",
+    "Comprare casa è una decisione importante. Con il mutuo giusto diventa un investimento sicuro, non un rischio.",
 } as const;
 
 export const ABOUT_HIGHLIGHTS = [
   { id: "clients", text: "+500 clienti aiutati" },
-  { id: "company", text: "Collaboratore di Euroansa Spa" },
+  { id: "focus", text: "Specializzato sui mutui" },
   { id: "area", text: "Lombardia: Bergamo e Milano" },
 ] as const;
 
 export const FINAL_CTA = {
-  headline: "Prenota la tua consulenza gratuita",
+  headline: "Prenota la tua consulenza mutui gratuita",
   subheadline:
     "Scegli il giorno e l'orario che preferisci. Ti richiamo senza impegno per capire come aiutarti.",
   cta: "Scegli data e ora",

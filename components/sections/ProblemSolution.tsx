@@ -1,11 +1,11 @@
-import { AlertCircle, Ban, Building2, HelpCircle, CheckCircle2 } from "lucide-react";
+import { AlertCircle, Ban, HelpCircle, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { PROBLEMS, SOLUTION } from "@/lib/constants";
 
-const icons = [Ban, AlertCircle, HelpCircle, Building2];
+const icons = [Ban, AlertCircle, HelpCircle];
 
 export function ProblemSolution() {
   return (
@@ -13,13 +13,13 @@ export function ProblemSolution() {
       <SectionContainer>
         <FadeIn>
           <SectionHeading
-            eyebrow="Il problema"
+            eyebrow="Il mutuo"
             title="Ti riconosci in una di queste situazioni?"
-            subtitle="Molte persone affrontano le stesse difficoltà. La differenza è avere qualcuno che lavora solo per te."
+            subtitle="Molte famiglie affrontano le stesse difficoltà quando cercano un mutuo. La differenza è avere un consulente al tuo fianco."
           />
         </FadeIn>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-3">
           {PROBLEMS.map((problem, index) => {
             const Icon = icons[index];
             return (
@@ -56,7 +56,7 @@ export function ProblemSolution() {
             <div className="relative overflow-hidden rounded-2xl shadow-feature">
               <Image
                 src="/images/photos/consulting.jpg"
-                alt="Consulenza finanziaria personalizzata"
+                alt="Consulenza mutui personalizzata"
                 width={720}
                 height={480}
                 className="h-64 w-full object-cover md:h-80"

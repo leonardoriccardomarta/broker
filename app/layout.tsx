@@ -13,23 +13,23 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Mediatore Creditizio | Consulenza Gratuita",
+  title: "Consulente Creditizio Mutui | Bergamo e Milano",
   description:
-    "Mediatore creditizio in Lombardia, provincia di Bergamo e Milano. Mutui, prestiti, cessione del quinto. Consulenza gratuita e senza impegno.",
+    "Consulente creditizio per mutui in Lombardia, provincia di Bergamo e Milano. Consulenza gratuita. Prestiti e cessione del quinto su richiesta.",
   keywords: [
-    "mediatore creditizio",
     "mutui Bergamo",
     "mutui Milano",
+    "consulente creditizio",
+    "mutuo prima casa",
+    "surroga mutuo",
     "Lombardia",
     "prestiti personali",
     "cessione del quinto",
-    "consolidamento debiti",
-    "consulenza finanziaria",
   ],
   openGraph: {
-    title: "Mediatore Creditizio | Consulenza Gratuita",
+    title: "Consulente Creditizio Mutui | Bergamo e Milano",
     description:
-      "Ottieni il miglior finanziamento per le tue esigenze. Consulenza gratuita, veloce e senza impegno.",
+      "Trova il mutuo giusto in Lombardia. Consulenza gratuita in provincia di Bergamo e Milano.",
     type: "website",
     locale: "it_IT",
     siteName: SITE.title,

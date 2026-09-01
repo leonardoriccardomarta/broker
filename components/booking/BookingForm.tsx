@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import { MiniCalendar } from "@/components/booking/MiniCalendar";
 import { Button } from "@/components/ui/Button";
+import { trackEvent } from "@/lib/analytics";
 import { clientBookingConfig as defaults } from "@/lib/booking/client-config";
 import { PRIVACY_PATH } from "@/lib/constants";
 import { parseDateKey } from "@/lib/booking/parse-date";
@@ -140,6 +141,7 @@ export function BookingForm() {
       }
 
       setStep("success");
+      trackEvent("booking_submit", { method: "form" });
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Prenotazione non riuscita.",

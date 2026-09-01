@@ -1,4 +1,5 @@
-const DEFAULT_WHATSAPP_MESSAGE = "Ciao, vorrei informazioni sul mutuo.";
+const DEFAULT_WHATSAPP_MESSAGE =
+  "Ciao Filippo, vorrei capire che mutuo posso ottenere.";
 
 export type ContactLinks = {
   telHref: string;

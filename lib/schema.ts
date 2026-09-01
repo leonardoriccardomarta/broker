@@ -1,4 +1,4 @@
-import { SITE } from "@/lib/constants";
+import { FAQ_ITEMS, SITE } from "@/lib/constants";
 import { getContactLinks } from "@/lib/contact";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -27,7 +27,7 @@ export function getStructuredData() {
     "@id": `${siteUrl}#business`,
     name: `${SITE.name} - Consulenza Mutui`,
     description:
-      "Consulenza gratuita su mutui in Lombardia, provincia di Bergamo e Milano. Prestiti e cessione del quinto su richiesta.",
+      "Consulenza gratuita su mutui in Lombardia, provincia di Bergamo e Milano. Confronto tra istituti convenzionati.",
     url: siteUrl,
     image: `${getSiteUrl().origin}/images/photos/filippo.jpeg`,
     areaServed: [
@@ -59,8 +59,21 @@ export function getStructuredData() {
     business.telephone = telephone;
   }
 
+  const faqPage = {
+    "@type": "FAQPage",
+    "@id": `${siteUrl}#faq`,
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
   return {
     "@context": "https://schema.org",
-    "@graph": [person, business],
+    "@graph": [person, business, faqPage],
   };
 }

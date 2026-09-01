@@ -1,4 +1,4 @@
-const FALLBACK_SITE_URL = "https://broker-vert.vercel.app";
+const FALLBACK_SITE_URL = "https://filippocarrieromutui.it";
 
 export function getSiteUrl(): URL {
   const raw =

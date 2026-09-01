@@ -56,7 +56,7 @@ export function ProblemSolution() {
             <div className="relative overflow-hidden rounded-2xl shadow-feature">
               <Image
                 src="/images/photos/family-home.jpg"
-                alt="Casa dei sogni: trovare il mutuo giusto"
+                alt="Famiglia davanti alla casa: trovare il mutuo adatto al proprio profilo"
                 width={720}
                 height={480}
                 className="h-64 w-full object-cover object-center md:h-80"

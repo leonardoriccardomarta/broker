@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyMobileCta } from "@/components/layout/StickyMobileCta";
+import { Analytics } from "@/components/analytics/Analytics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: "Consulente Creditizio Mutui | Bergamo e Milano",
   description:
-    "Consulente creditizio per mutui in Lombardia, provincia di Bergamo e Milano. Consulenza gratuita. Prestiti e cessione del quinto su richiesta.",
+    "Consulente creditizio per mutui in Lombardia, provincia di Bergamo e Milano. Confronto tra istituti convenzionati. Prima consulenza gratuita.",
   keywords: [
     "mutui Bergamo",
     "mutui Milano",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Consulente Creditizio Mutui | Bergamo e Milano",
     description:
-      "Trova il mutuo giusto in Lombardia. Consulenza gratuita in provincia di Bergamo e Milano.",
+      "Trova il mutuo più adatto al tuo profilo in Lombardia. Consulenza gratuita in provincia di Bergamo e Milano.",
     type: "website",
     locale: "it_IT",
     siteName: SITE.title,
@@ -61,6 +62,7 @@ export default function RootLayout({
   return (
     <html lang="it" className={`${jakarta.variable} scroll-smooth`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+        <Analytics />
         <JsonLd />
         <Header />
         <main className="pb-32 md:pb-0">{children}</main>

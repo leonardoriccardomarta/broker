@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { Users } from "lucide-react";
 import { ConsultantIntro } from "@/components/ui/ConsultantIntro";
 import { ContactActions } from "@/components/ui/ContactActions";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { HERO } from "@/lib/constants";
+import { HERO, HERO_TRUST_ITEMS } from "@/lib/constants";
+
 export function Hero() {
   return (
     <section className="relative overflow-hidden bg-hero pt-28 pb-16 md:pt-36 md:pb-24">
@@ -18,12 +18,24 @@ export function Hero() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-black/65 md:text-xl">
               {HERO.subheadline}
             </p>
-            <div className="mt-8 flex flex-col gap-4">
+
+            <div className="mt-6 rounded-2xl border border-primary/15 bg-white/80 px-4 py-3 text-sm font-medium text-black/70 shadow-soft backdrop-blur-sm">
+              <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                {HERO_TRUST_ITEMS.map((item, index) => (
+                  <span key={item} className="inline-flex items-center">
+                    {index > 0 && (
+                      <span className="mr-2 text-primary/40" aria-hidden="true">
+                        •
+                      </span>
+                    )}
+                    {item}
+                  </span>
+                ))}
+              </p>
+            </div>
+
+            <div className="mt-8">
               <ContactActions layout="hero" />
-              <div className="flex items-center gap-2 text-sm font-medium text-black/60">
-                <Users className="h-5 w-5 text-accent" />
-                {HERO.trust}
-              </div>
             </div>
           </FadeIn>
 

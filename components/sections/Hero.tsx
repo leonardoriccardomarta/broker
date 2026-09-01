@@ -34,7 +34,7 @@ export function Hero() {
               </p>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 hidden md:block">
               <ContactActions layout="hero" />
             </div>
           </FadeIn>

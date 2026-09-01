@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle, Phone } from "lucide-react";
+import { Calendar, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { BOOKING_HREF, HERO } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
@@ -21,12 +21,15 @@ export function ContactActions({ layout }: ContactActionsProps) {
     <a
       href={contact.telHref}
       onClick={() => trackEvent("call_click", { location: layout })}
+      aria-label="Chiamami"
       className={`${actionBase} border border-slate-200 bg-white text-midnight hover:bg-slate-50 ${
-        layout === "hero" ? "px-5 py-3 text-sm" : "px-4 py-3 text-sm"
+        layout === "hero"
+          ? "px-5 py-3 text-sm"
+          : "h-11 w-11 shrink-0 p-0"
       }`}
     >
       <Phone className="h-4 w-4 shrink-0" />
-      Chiamami
+      {layout === "hero" ? "Chiamami" : null}
     </a>
   );
 
@@ -39,11 +42,13 @@ export function ContactActions({ layout }: ContactActionsProps) {
       className={`${actionBase} bg-[#25D366] text-white shadow-soft hover:bg-[#1fb855] ${
         layout === "hero"
           ? "w-full px-6 py-4 text-base sm:text-lg"
-          : "w-full px-4 py-3 text-sm"
+          : "h-11 min-w-0 flex-1 px-4 text-sm"
       }`}
     >
-      <MessageCircle className="h-5 w-5 shrink-0" />
-      {layout === "hero" ? HERO.whatsappCta : "WhatsApp"}
+      <MessageCircle className="h-4 w-4 shrink-0" />
+      <span className={layout === "sticky" ? "truncate" : undefined}>
+        {layout === "hero" ? HERO.whatsappCta : "WhatsApp"}
+      </span>
     </a>
   );
 
@@ -61,21 +66,20 @@ export function ContactActions({ layout }: ContactActionsProps) {
       <Button
         href={BOOKING_HREF}
         variant="secondary"
-        className="w-full py-3 text-sm"
+        className="h-11 shrink-0 gap-1.5 px-4 py-0 text-sm"
         onClick={() => trackEvent("booking_cta_click", { location: layout })}
       >
-        Prenota consulenza
+        <Calendar className="h-4 w-4 shrink-0" />
+        Prenota
       </Button>
     );
 
   if (layout === "sticky") {
     return (
-      <div className="mx-auto w-full max-w-lg space-y-2">
+      <div className="mx-auto flex w-full max-w-lg items-center gap-2">
         {whatsappButton}
-        <div className="grid grid-cols-2 gap-2">
-          {bookingButton}
-          {callButton}
-        </div>
+        {callButton}
+        {bookingButton}
       </div>
     );
   }

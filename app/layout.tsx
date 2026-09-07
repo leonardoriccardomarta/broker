@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { StickyMobileCta } from "@/components/layout/StickyMobileCta";
 import { Analytics } from "@/components/analytics/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/constants";
 import { getSiteUrl } from "@/lib/site-url";
@@ -63,6 +64,7 @@ export default function RootLayout({
     <html lang="it" className={`${jakarta.variable} scroll-smooth`}>
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
         <Analytics />
+        <VercelAnalytics />
         <JsonLd />
         <Header />
         <main className="pb-32 md:pb-0">{children}</main>

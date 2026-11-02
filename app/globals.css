@@ -2,17 +2,19 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #001b50;
-  --primary: #0057ff;
-  --primary-dark: #0046cc;
-  --primary-light: #3b82f6;
+  --foreground: #002a54;
+  --primary: #004f9f;
+  --primary-dark: #003366;
+  --primary-light: #1d70b8;
   --accent: #059669;
   --accent-light: #10b981;
   --muted: #64748b;
+  --surface-light: #f8fafc;
+  --surface-muted: #f1f5f9;
   --success-light: #e7f8f2;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -21,26 +23,32 @@
   --color-accent: var(--accent);
   --color-accent-light: var(--accent-light);
   --color-muted: var(--muted);
-  --color-midnight: #001b50;
+  --color-midnight: #002a54;
+  --color-navy: #071e3d;
+  --color-surface-light: var(--surface-light);
+  --color-surface-muted: var(--surface-muted);
   --color-success-light: var(--success-light);
   --font-sans: var(--font-jakarta);
 
-  --shadow-soft: 0px 4px 17px 0px #00000008;
-  --shadow-card: 0px 24px 64px 0px #00000012;
-  --shadow-feature: 0px 72px 129px 0px #0000001a;
+  --shadow-soft: 0px 4px 20px 0px rgba(0, 42, 84, 0.05);
+  --shadow-card: 0px 16px 36px 0px rgba(0, 42, 84, 0.08);
+  --shadow-feature: 0px 32px 64px 0px rgba(0, 42, 84, 0.12);
 
   --background-image-hero: linear-gradient(
-    120.3deg,
-    #d5f2ff 31.56%,
-    hsla(0, 0%, 100%, 0) 94.83%
+    135deg,
+    #f0f6fd 0%,
+    #ffffff 60%,
+    #f8fafc 100%
   );
-  --background-image-cta: linear-gradient(135deg, #0057ff 0%, #0046cc 50%, #059669 100%);
+  --background-image-cta: linear-gradient(135deg, #002a54 0%, #004f9f 60%, #071e3d 100%);
 }
 
 @layer base {
   *,
   ::after,
-  ::before {
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
     border-color: #e2e8f0;
   }
 
@@ -51,55 +59,10 @@
   body {
     background: var(--background);
     color: var(--foreground);
-    font-family: var(--font-jakarta), system-ui, sans-serif;
+    font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   }
 
   [id] {
-    scroll-margin-top: 6rem;
-  }
-}
-
-@layer utilities {
-  .container-page {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
-  }
-
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .testimonial-track {
-    animation: testimonial-scroll 45s linear infinite;
-    width: max-content;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .testimonial-track {
-      animation: none;
-      flex-wrap: wrap;
-      width: 100%;
-      justify-content: center;
-      gap: 1rem;
-    }
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes testimonial-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
+    scroll-margin-top: 5rem;
   }
 }

@@ -1,77 +1,52 @@
 import Link from "next/link";
-import {
-  NAV_LINKS,
-  PRIVACY_PATH,
-  SECTION_IDS,
-  SERVICES,
-  SITE,
-} from "@/lib/constants";
+import Image from "next/image";
+import { PRIVACY_PATH, SITE } from "@/lib/constants";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-50 pb-40 text-midnight md:pb-0">
-      <SectionContainer className="py-6 md:py-8">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="sm:col-span-2 lg:col-span-2">
-            <Link
-              href="/"
-              className="inline-block transition-opacity hover:opacity-80"
-            >
-              <p className="font-semibold">{SITE.name}</p>
-              <p className="text-sm text-black/55">{SITE.title}</p>
-            </Link>
-            <p className="mt-2 text-sm text-black/50">{SITE.areaLine}</p>
-          </div>
+    <footer className="border-t border-slate-200 bg-slate-900 text-white pb-28 md:pb-8">
+      <SectionContainer className="py-10">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-8 border-b border-slate-800">
+          <Link href="/" className="inline-flex items-center gap-2.5">
+            <Image
+              src="/images/logo/brand-icon.svg"
+              alt="Euroansa"
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-lg"
+            />
+            <div>
+              <p className="text-base font-bold text-white tracking-tight">Euroansa</p>
+              <p className="text-[11px] uppercase tracking-wider text-sky-400 font-semibold">Ufficio di Inzago</p>
+            </div>
+          </Link>
 
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-black/40">
-              Servizi
+          <div className="text-xs text-slate-400">
+            <p>
+              <strong className="text-slate-200">Filippo Carriero</strong> &amp; <strong className="text-slate-200">Marco Gorla</strong>
             </p>
-            <ul className="mt-3 space-y-1.5">
-              {SERVICES.map((service) => (
-                <li key={service.title}>
-                  <a
-                    href={`#${SECTION_IDS.servizi}`}
-                    className="text-sm text-black/65 transition-colors hover:text-primary"
-                  >
-                    {service.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-black/40">
-              Navigazione
-            </p>
-            <ul className="mt-3 space-y-1.5">
-              {NAV_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-black/65 transition-colors hover:text-primary"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <p className="text-[11px] text-slate-500">Mediatori Creditizi · Inzago (MI)</p>
           </div>
         </div>
 
-        <div className="mt-6 border-t border-slate-200 pt-4 text-center">
-          <Link
-            href={PRIVACY_PATH}
-            className="relative z-10 inline-block py-1 text-sm font-medium text-black/60 transition-colors hover:text-primary"
-          >
-            Informativa Privacy
-          </Link>
-          <p className="mt-3 text-xs leading-relaxed text-black/40">
-            © {new Date().getFullYear()} {SITE.name}. Tutti i diritti riservati.
-            <span className="mx-auto mt-2 block max-w-2xl">{SITE.legalLine}</span>
+        {/* Mandatory OAM Disclaimer */}
+        <div className="mt-6 text-xs text-slate-400 leading-relaxed space-y-2">
+          <p className="font-medium text-slate-300">
+            {SITE.legalLine}
           </p>
+          <p className="text-[11px] text-slate-500 max-w-4xl">
+            Filippo Carriero e Marco Gorla svolgono l&apos;attività di mediazione creditizia per conto di Euroansa S.p.A., società iscritta all&apos;elenco OAM al n. M191 e soggetta alla vigilanza dell&apos;Organismo degli Agenti e Mediatori. Messaggio pubblicitario con finalità promozionale. Prima della conclusione del contratto, prendere visione delle Informazioni Generali sul Credito Immobiliare e dei Fogli Informativi disponibili presso gli istituti eroganti.
+          </p>
+          <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-slate-800/80 text-[11px] text-slate-500">
+            <p>© {new Date().getFullYear()} Euroansa — Ufficio di Inzago. Tutti i diritti riservati.</p>
+            <Link
+              href={PRIVACY_PATH}
+              className="text-slate-400 hover:text-white underline underline-offset-2 transition-colors"
+            >
+              Informativa Privacy
+            </Link>
+          </div>
         </div>
       </SectionContainer>
     </footer>

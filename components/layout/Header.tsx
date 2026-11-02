@@ -1,101 +1,76 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Phone, Calendar, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { SectionContainer } from "@/components/ui/SectionContainer";
-import { BOOKING_HREF, NAV_LINKS, SITE } from "@/lib/constants";
+import { BOOKING_HREF } from "@/lib/constants";
+import { getContactLinks } from "@/lib/contact";
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const contact = getContactLinks();
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-slate-200/80 bg-white/95 py-3 shadow-soft backdrop-blur-md"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <SectionContainer className="flex items-center justify-between gap-4">
-        <Link href="/" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/90 bg-white/95 py-3 shadow-soft backdrop-blur-md">
+      <SectionContainer className="flex items-center justify-between gap-3 sm:gap-4">
+        {/* Left: Logo Euroansa | Ufficio di Inzago */}
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0">
           <Image
             src="/images/logo/brand-icon.svg"
-            alt=""
-            width={40}
-            height={40}
-            className="h-9 w-9 shrink-0 sm:h-10 sm:w-10"
+            alt="Euroansa"
+            width={38}
+            height={38}
+            className="h-9 w-9 shrink-0 rounded-lg shadow-sm"
+            priority
           />
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold text-midnight sm:text-base lg:text-lg">
-              {SITE.name}
-            </p>
-            <p className="truncate text-[11px] text-black/50 sm:text-xs">{SITE.title}</p>
+          <div className="flex items-baseline gap-1.5 sm:gap-2">
+            <span className="text-base font-extrabold tracking-tight text-midnight sm:text-lg">
+              Euroansa
+            </span>
+            <span className="text-slate-300 font-light">|</span>
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+              Ufficio di Inzago
+            </span>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Principale">
-          {NAV_LINKS.map((link) => (
+        {/* Right: Quick Contact Actions (Phone + WhatsApp + Prenota) */}
+        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {contact?.telHref && (
             <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-black/70 transition-colors hover:text-primary"
+              href={contact.telHref}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold text-slate-800 transition-colors hover:bg-slate-100"
+              title="Chiamaci"
             >
-              {link.label}
+              <Phone className="h-3.5 w-3.5 text-primary" />
+              <span className="hidden sm:inline">Chiamaci</span>
             </a>
-          ))}
-        </nav>
+          )}
 
-        <Button href={BOOKING_HREF} variant="primary" className="hidden lg:inline-flex">
-          Prenota consulenza
-        </Button>
-
-        <button
-          type="button"
-          aria-label="Menu"
-          aria-expanded={menuOpen}
-          className="flex flex-col gap-1.5 p-2 lg:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span className="block h-0.5 w-6 bg-midnight" />
-          <span className="block h-0.5 w-6 bg-midnight" />
-          <span className="block h-0.5 w-6 bg-midnight" />
-        </button>
-      </SectionContainer>
-
-      {menuOpen && (
-        <div className="border-t border-slate-200 bg-white px-4 py-4 lg:hidden">
-          <nav className="flex flex-col gap-3" aria-label="Mobile">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-base font-medium text-midnight"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
-            <Button
-              href={BOOKING_HREF}
-              variant="primary"
-              className="mt-2 w-full"
-              onClick={() => setMenuOpen(false)}
+          {contact?.whatsappHref && (
+            <a
+              href={contact.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-emerald-600/30 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-800 transition-colors hover:bg-emerald-100"
+              title="Scrivici su WhatsApp"
             >
-              Prenota consulenza
-            </Button>
-          </nav>
+              <MessageCircle className="h-3.5 w-3.5 text-emerald-600" />
+              <span className="hidden sm:inline">WhatsApp</span>
+            </a>
+          )}
+
+          <Button
+            href={BOOKING_HREF}
+            variant="primary"
+            className="text-xs py-2 px-3.5 sm:px-4 shadow-sm"
+          >
+            <Calendar className="mr-1.5 h-3.5 w-3.5" />
+            <span>Prenota Consulenza</span>
+          </Button>
         </div>
-      )}
+      </SectionContainer>
     </header>
   );
 }

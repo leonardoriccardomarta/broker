@@ -1,72 +1,63 @@
-import Image from "next/image";
+import { Home, RefreshCw, Layers, Banknote, ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PRIMARY_SERVICE, SECONDARY_SERVICES } from "@/lib/constants";
+import { BOOKING_HREF, SECTION_IDS, SERVICES } from "@/lib/constants";
+
+const ICONS = [Home, RefreshCw, Layers, Banknote];
 
 export function Services() {
   return (
-    <section id="servizi" className="bg-slate-50/80 py-20 md:py-28">
+    <section id={SECTION_IDS.servizi} className="py-16 md:py-24 bg-white border-b border-slate-200/80">
       <SectionContainer>
         <FadeIn>
           <SectionHeading
-            eyebrow="Servizi"
-            title="Mutui al centro, altre soluzioni su richiesta"
-            subtitle="Il mio lavoro principale è trovare il mutuo giusto. Valuto anche prestiti e cessione del quinto quando servono."
+            eyebrow="Cosa Facciamo"
+            title="I Nostri Servizi di Credito"
+            subtitle="Confrontiamo per te le migliori condizioni di mercato tra oltre 25 banche convenzionate."
           />
         </FadeIn>
 
-        <FadeIn delay={80}>
-          <article className="rounded-2xl bg-white p-6 shadow-feature md:p-8">
-            <div className="flex flex-col gap-6 md:flex-row md:items-center">
-              <Image
-                src={PRIMARY_SERVICE.icon}
-                alt=""
-                width={56}
-                height={56}
-                className="h-14 w-14"
-              />
-              <div className="flex-1">
-                <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-                  Focus principale
-                </p>
-                <h3 className="mt-1 text-2xl font-semibold text-midnight md:text-3xl">
-                  {PRIMARY_SERVICE.title}
-                </h3>
-                <p className="mt-3 max-w-2xl text-base leading-relaxed text-black/60">
-                  {PRIMARY_SERVICE.description}
-                </p>
-              </div>
-              <p className="inline-flex w-fit rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
-                {PRIMARY_SERVICE.benefit}
-              </p>
-            </div>
-          </article>
-        </FadeIn>
+        {/* Essential 4-Card Grid */}
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {SERVICES.map((service, index) => {
+            const Icon = ICONS[index] ?? Home;
 
-        <div className="mt-6 grid gap-6 sm:grid-cols-2">
-          {SECONDARY_SERVICES.map((service, index) => (
-            <FadeIn key={service.title} delay={120 + index * 80}>
-              <article className="flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white/80 p-6">
-                <Image
-                  src={service.icon}
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 opacity-80"
-                />
-                <h3 className="mt-4 text-lg font-semibold text-midnight">
-                  {service.title}
-                </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-black/55">
-                  {service.description}
-                </p>
-                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-black/40">
-                  {service.benefit}
-                </p>
-              </article>
-            </FadeIn>
-          ))}
+            return (
+              <FadeIn key={service.id} delay={index * 60}>
+                <article className="flex h-full flex-col justify-between rounded-2xl border border-slate-200/90 bg-slate-50/60 p-6 shadow-soft transition-all duration-200 hover:bg-white hover:border-primary/40 hover:shadow-card">
+                  <div>
+                    <div className="flex items-center justify-between pb-4 border-b border-slate-200/60">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500 rounded-md bg-white px-2 py-0.5 border border-slate-200">
+                        {service.badge}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-4 text-base font-bold text-midnight leading-snug">
+                      {service.title}
+                    </h3>
+
+                    <p className="mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-3 border-t border-slate-200/60">
+                    <a
+                      href={BOOKING_HREF}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-midnight transition-colors"
+                    >
+                      <span>Verifica fattibilità</span>
+                      <ArrowRight className="h-3 w-3" />
+                    </a>
+                  </div>
+                </article>
+              </FadeIn>
+            );
+          })}
         </div>
       </SectionContainer>
     </section>

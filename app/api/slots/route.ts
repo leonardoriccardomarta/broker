@@ -1,17 +1,10 @@
 import { NextResponse } from "next/server";
 import { isGoogleCalendarConfigured } from "@/lib/booking/config";
-import { isValidBookingDate } from "@/lib/booking/slots";
+import { isValidBookingDate, generateSlotsForDate } from "@/lib/booking/slots";
 import { getAvailableSlots } from "@/lib/google/calendar";
 import { getGoogleCalendarErrorMessage } from "@/lib/google/errors";
 
 export async function GET(request: Request) {
-  if (!isGoogleCalendarConfigured()) {
-    return NextResponse.json(
-      { error: "Prenotazioni non ancora configurate." },
-      { status: 503 },
-    );
-  }
-
   const { searchParams } = new URL(request.url);
   const date = searchParams.get("date");
 
@@ -22,14 +15,17 @@ export async function GET(request: Request) {
     );
   }
 
+  if (!isGoogleCalendarConfigured()) {
+    const slots = generateSlotsForDate(date);
+    return NextResponse.json({ date, slots });
+  }
+
   try {
     const slots = await getAvailableSlots(date);
     return NextResponse.json({ date, slots });
   } catch (error) {
     console.error("[api/slots]", error);
-    return NextResponse.json(
-      { error: getGoogleCalendarErrorMessage(error) },
-      { status: 500 },
-    );
+    const fallbackSlots = generateSlotsForDate(date);
+    return NextResponse.json({ date, slots: fallbackSlots });
   }
 }

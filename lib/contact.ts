@@ -1,5 +1,5 @@
 const DEFAULT_WHATSAPP_MESSAGE =
-  "Ciao Filippo, vorrei capire che mutuo posso ottenere.";
+  "Buongiorno, vorrei richiedere informazioni per una consulenza mutui con l'Ufficio Euroansa di Inzago.";
 
 export type ContactLinks = {
   telHref: string;

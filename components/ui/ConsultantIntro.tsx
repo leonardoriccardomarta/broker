@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { SITE } from "@/lib/constants";
+import { SITE, TEAM_MEMBERS } from "@/lib/constants";
 
 type ConsultantIntroProps = {
   photoSize?: "sm" | "md";
@@ -7,38 +7,32 @@ type ConsultantIntroProps = {
   className?: string;
 };
 
-const PHOTO_SIZES = {
-  sm: { box: "h-14 w-14", image: 56 },
-  md: { box: "h-20 w-20", image: 80 },
-} as const;
-
 export function ConsultantIntro({
   photoSize = "sm",
   showName = true,
   className = "",
 }: ConsultantIntroProps) {
-  const size = PHOTO_SIZES[photoSize];
+  const imgSize = photoSize === "md" ? 44 : 36;
 
   return (
-    <div className={`flex items-start gap-3 ${className}`}>
-      <Image
-        src="/images/photos/filippo.jpeg"
-        alt={SITE.name}
-        width={size.image}
-        height={size.image}
-        className={`${size.box} shrink-0 rounded-full object-cover ring-2 ring-white shadow-soft`}
-      />
+    <div className={`flex items-center gap-3 ${className}`}>
+      <div className="flex -space-x-2 overflow-hidden shrink-0">
+        {TEAM_MEMBERS.map((m) => (
+          <Image
+            key={m.id}
+            src={m.photo}
+            alt={m.name}
+            width={imgSize}
+            height={imgSize}
+            className="rounded-full object-cover ring-2 ring-white shadow-soft"
+          />
+        ))}
+      </div>
       <div className="min-w-0">
         {showName ? (
           <p className="text-sm font-semibold text-midnight">{SITE.name}</p>
         ) : null}
-        <p
-          className={`leading-snug text-black/60 ${
-            showName ? "mt-0.5 text-xs" : "text-sm"
-          }`}
-        >
-          {SITE.legalLine}
-        </p>
+        <p className="text-xs text-black/60 truncate">{SITE.legalLine}</p>
       </div>
     </div>
   );

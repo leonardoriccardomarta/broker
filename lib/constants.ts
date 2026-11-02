@@ -1,9 +1,9 @@
 export const SITE = {
-  name: "Filippo Carriero",
-  title: "Consulente Creditizio",
+  name: "Euroansa — Ufficio di Inzago",
+  title: "Consulenza Mutui e Mediazione Creditizia",
   legalLine:
-    "Consulente Creditizio di Euroansa S.p.A., Società di mediazione creditizia OAM M191",
-  areaLine: "Lombardia, provincia di Bergamo e Milano",
+    "Filippo Carriero e Marco Gorla · Mediatori Creditizi di Euroansa S.p.A. (Iscrizione OAM M191)",
+  areaLine: "Inzago, Martesana, provincia di Milano e Bergamo",
 } as const;
 
 export const SECTION_IDS = {
@@ -19,8 +19,8 @@ export const SECTION_IDS = {
 export const NAV_LINKS = [
   { label: "Mutui", href: `#${SECTION_IDS.servizi}` },
   { label: "Come funziona", href: `#${SECTION_IDS.comeFunziona}` },
-  { label: "Recensioni", href: `#${SECTION_IDS.recensioni}` },
-  { label: "Chi sono", href: `#${SECTION_IDS.chiSono}` },
+  { label: "I Mediatori", href: `#${SECTION_IDS.chiSono}` },
+  { label: "FAQ", href: `#${SECTION_IDS.faq}` },
 ] as const;
 
 export const BOOKING_HREF = `#${SECTION_IDS.prenota}`;
@@ -28,49 +28,67 @@ export const BOOKING_HREF = `#${SECTION_IDS.prenota}`;
 export const PRIVACY_PATH = "/privacy" as const;
 
 export const HERO = {
-  headline: "Trova il mutuo più adatto a te, senza girare banca per banca.",
+  headline:
+    "Consulenza Mutui a Inzago — Troviamo il mutuo migliore tra oltre 25 banche",
   subheadline:
-    "Analizzo la tua situazione e confronto le soluzioni disponibili tra gli istituti convenzionati, seguendoti dalla prima valutazione fino al rogito.",
+    "Confronto gratuito e indipendente delle offerte bancarie, analisi di prefattibilità e assistenza dedicata fino al rogito.",
   whatsappCta: "Verifica il tuo mutuo su WhatsApp",
   bookingCta: "Prenota una consulenza gratuita",
-  imageCaption: "Consulenza mutui gratuita",
+  imageCaption: "Consulenza mutui a Inzago",
 } as const;
 
 export const HERO_TRUST_ITEMS = [
-  "+500 clienti aiutati",
-  "130+ convenzioni",
-  "Bergamo e Milano",
-  "Prima consulenza senza impegno",
+  "Oltre 25 banche convenzionate",
+  "Consulenza 100% gratuita",
+  "Presidio a Inzago",
+  "Assistenza fino al rogito",
+] as const;
+
+export const TEAM_MEMBERS = [
+  {
+    id: "filippo-carriero",
+    name: "Filippo Carriero",
+    role: "Mediatore Creditizio",
+    company: "Euroansa S.p.A.",
+    photo: "/team/filippo-carriero.jpg",
+  },
+  {
+    id: "marco-gorla",
+    name: "Marco Gorla",
+    role: "Mediatore Creditizio",
+    company: "Euroansa S.p.A.",
+    photo: "/team/marco-gorla.jpg",
+  },
 ] as const;
 
 export const WHY_ME = {
-  title: "Perché affidarti a me?",
+  title: "Perché affidarti al nostro ufficio?",
   subtitle:
-    "Un supporto diretto e trasparente, con confronto tra gli istituti convenzionati per la tua situazione.",
+    "Un supporto diretto e trasparente a Inzago, con confronto tra oltre 25 istituti bancari convenzionati per la tua situazione.",
   points: [
     {
       id: "referente",
-      title: "Un unico referente",
+      title: "Consulenti dedicati",
       description:
-        "Hai sempre la stessa persona al tuo fianco, dalla prima analisi alla firma.",
+        "Hai professionisti qualificati al tuo fianco, dalla prima analisi fino al giorno della stipula del rogito.",
     },
     {
       id: "confronto",
-      title: "Confronto tra più istituti",
+      title: "Confronto tra oltre 25 istituti",
       description:
-        "Valuto le condizioni disponibili tra gli istituti convenzionati, senza dover andare di banca in banca.",
+        "Valutiamo le migliori condizioni di tasso e durata disponibili sul mercato, senza farti perdere tempo in filiale.",
     },
     {
       id: "pratica",
-      title: "Gestione della pratica fino al rogito",
+      title: "Gestione completa della pratica",
       description:
-        "Ti accompagno in ogni fase: documenti, perizia, delibera e chiusura del mutuo.",
+        "Ti accompagniamo in ogni fase: raccolta documenti, perizia, delibera reddituale e rogito notarile.",
     },
     {
       id: "analisi",
-      title: "Analisi iniziale senza impegno",
+      title: "Analisi di prefattibilità gratuita",
       description:
-        "La prima valutazione è gratuita: capiamo insieme cosa è realistico per il tuo profilo.",
+        "La prima valutazione è 100% gratuita e senza impegno: capiamo insieme la fattibilità concreta del mutuo.",
     },
   ],
 } as const;
@@ -94,31 +112,31 @@ export const PROBLEMS = [
 ] as const;
 
 export const SOLUTION = {
-  title: "Ti aiuto a trovare la soluzione più adatta al tuo profilo",
+  title: "Ti aiutiamo a trovare la soluzione più adatta al tuo profilo",
   description:
-    "Analizzo la tua situazione, confronto le condizioni disponibili tra gli istituti convenzionati e ti accompagno fino all'approvazione. Trasparenza su costi e tempi, senza impegno.",
+    "Analizziamo la tua situazione, confrontiamo le condizioni disponibili tra oltre 25 banche convenzionate e ti accompagniamo fino all'approvazione. Trasparenza su costi e tempi, senza impegno.",
 } as const;
 
 export const PRIMARY_SERVICE = {
   title: "Mutui",
   description:
     "Prima casa, surroga o ristrutturazione: confronto le soluzioni disponibili tra gli istituti convenzionati per trovare tasso e rata adatti al tuo budget.",
-  benefit: "Il mio focus principale",
+  benefit: "Il nostro focus principale",
   icon: "/images/features/mutuo.svg",
 } as const;
 
 export const SECONDARY_SERVICES = [
   {
-    title: "Prestiti personali",
+    title: "Prestiti personali & Consolidamento",
     description:
-      "Liquidità con condizioni chiare, anche in casi più complessi.",
+      "Liquidità con condizioni chiare e accorpamento rate per ridurre l'esborso mensile.",
     benefit: "Su richiesta",
     icon: "/images/features/prestito.svg",
   },
   {
     title: "Cessione del quinto",
     description:
-      "Per dipendenti e pensionati che cercano una rata gestibile e tasso fisso.",
+      "Per dipendenti e pensionati che cercano una rata gestibile e tasso fisso garantito.",
     benefit: "Su richiesta",
     icon: "/images/features/cessione.svg",
   },
@@ -141,12 +159,12 @@ export const STEPS = [
     step: 3,
     title: "Confronto istituti",
     description:
-      "Confronto le condizioni disponibili tra gli istituti convenzionati per il tuo profilo.",
+      "Confrontiamo le condizioni disponibili tra oltre 25 istituti convenzionati per il tuo profilo.",
   },
   {
     step: 4,
     title: "Approvazione",
-    description: "Ti seguo nella pratica fino alla delibera e alla firma.",
+    description: "Ti seguiamo nella pratica fino alla delibera e alla firma dal notaio.",
   },
 ] as const;
 
@@ -154,31 +172,31 @@ export const TESTIMONIALS = [
   {
     initials: "M.R.",
     label: "Cliente · Milano",
-    text: "Avevo un rifiuto in banca e rischiavo di perdere la casa. Filippo ha ripianificato la pratica e trovato una soluzione più adatta di quanto sperassi.",
+    text: "Avevo un rifiuto in banca e rischiavo di perdere la casa. Il team di Inzago ha ripianificato la pratica e trovato una soluzione ottimale.",
     service: "Mutuo prima casa",
   },
   {
     initials: "A.B.",
-    label: "Cliente · Bergamo",
-    text: "Volevo la surroga per abbassare la rata. In pochi giorni avevo un confronto chiaro tra più banche, senza costi nascosti.",
+    label: "Cliente · Inzago",
+    text: "Volevo la surroga per abbassare la rata. In pochi giorni avevo un confronto chiaro tra più banche, senza costi.",
     service: "Surroga mutuo",
   },
   {
     initials: "S.T.",
     label: "Cliente · Treviglio",
-    text: "Dovevamo ristrutturare casa e il mutuo in banca sembrava troppo caro. Filippo ha trovato condizioni più favorevoli e ci ha seguito fino alla firma.",
+    text: "Dovevamo ristrutturare casa: ci hanno seguito con grande professionalità fino alla stipula notarile.",
     service: "Mutuo ristrutturazione",
   },
   {
     initials: "G.F.",
-    label: "Cliente · Seriate",
-    text: "Per la seconda casa avevamo paura di non farcela. Filippo ha confrontato più banche e trovato una soluzione con rata sostenibile.",
-    service: "Mutuo seconda casa",
+    label: "Cliente · Cassano d'Adda",
+    text: "Disponibili e chiari in ogni momento. Abbiamo trovato un mutuo a tasso fisso eccellente.",
+    service: "Mutuo acquisto",
   },
   {
     initials: "P.M.",
-    label: "Cliente · Dalmine",
-    text: "Prima casa, tanti dubbi su tassi e spese. Mi ha guidato passo passo fino all'approvazione, sempre chiaro e disponibile.",
+    label: "Cliente · Gorgonzola",
+    text: "Prima casa, tanti dubbi su tassi e perizia. Ci hanno guidato passo passo fino all'approvazione.",
     service: "Mutuo prima casa",
   },
 ] as const;
@@ -194,52 +212,54 @@ export const FAQ_ITEMS = [
     id: "mutuo-100",
     question: "Posso ottenere un mutuo al 100%?",
     answer:
-      "Il finanziamento integrale è meno frequente e di solito richiede garanzie aggiuntive o profili specifici. In alcuni casi, con agevolazioni o fondi di garanzia, si possono valutare soluzioni più vicine al 100%. Dipende dalla tua situazione: analizziamo insieme cosa è fattibile.",
+      "Il finanziamento integrale è meno frequente e di solito richiede garanzie aggiuntive o profili specifici. In alcuni casi, con agevolazioni o fondi di garanzia (es. Fondo Garanzia Prima Casa), si possono valutare soluzioni vicine al 100%.",
   },
   {
     id: "fondo-consap",
-    question: "Come funziona il Fondo CONSAP?",
+    question: "Come funziona il Fondo Garanzia Prima Casa?",
     answer:
-      "Il Fondo CONSAP è una garanzia pubblica riservata a categorie particolari (ad esempio personale delle Forze Armate, Polizia e altri enti convenzionati). Può facilitare l'accesso al credito, anche con anticipo ridotto o nullo, secondo i requisiti previsti. Verifico se rientri nei casi coperti e come strutturare la pratica.",
+      "È una garanzia pubblica che facilita l'accesso al mutuo, particolarmente vantaggiosa per giovani under 36. Verifichiamo se rientri nei requisiti e gestiamo noi la documentazione con la banca scelta.",
   },
   {
     id: "autonomo",
-    question: "Posso ottenere un mutuo se sono autonomo?",
+    question: "Posso ottenere un mutuo se sono lavoratore autonomo?",
     answer:
-      "Sì, ma le banche richiedono in genere più anni di attività, documentazione fiscale in ordine e reddito dimostrabile. I criteri cambiano da istituto a istituto: confronto le opzioni disponibili per la tua situazione e ti indico la documentazione necessaria.",
+      "Sì, con documentazione fiscale in ordine e reddito dimostrabile. I criteri cambiano tra istituti: confrontiamo le banche più favorevoli al tuo inquadramento professionale.",
   },
   {
     id: "tempi-delibera",
-    question: "Quanto tempo serve per ottenere una delibera?",
+    question: "Quanto tempo serve per ottenere la delibera?",
     answer:
-      "I tempi variano in base a completezza dei documenti, perizia e iter della banca scelta. In media, con pratica completa, la delibera può arrivare in circa 2–4 settimane. Ti tengo aggiornato su ogni passaggio per evitare ritardi evitabili.",
+      "I tempi variano in base a documentazione, perizia e banca scelta. In media circa 2–4 settimane. Ti teniamo costantemente aggiornato per evitare qualsiasi ritardo.",
   },
 ] as const;
 
 export const ABOUT = {
-  name: "Filippo Carriero",
+  name: "Filippo Carriero e Marco Gorla",
+  title: "Mediatori Creditizi",
+  office: "Euroansa — Ufficio di Inzago",
   description:
-    "Mi occupo soprattutto di mutui per famiglie e professionisti in Lombardia, con particolare presenza in provincia di Bergamo e Milano. Confronto le condizioni disponibili tra gli istituti convenzionati per individuare la soluzione più adatta al tuo profilo. La prima consulenza è gratuita e senza impegno.",
+    "Operiamo presso il presidio di Inzago per assistere famiglie e professionisti nella scelta del mutuo più vantaggioso. Confrontiamo le offerte tra oltre 25 banche convenzionate con assistenza continuativa fino al rogito.",
   quote:
-    "Comprare casa è una decisione importante. Con il mutuo giusto diventa un investimento sicuro, non un rischio.",
+    "Comprare casa è una scelta fondamentale. Con la giusta guida diventa un percorso trasparente, sicuro e senza sorprese.",
 } as const;
 
 export const ABOUT_HIGHLIGHTS = [
-  { id: "clients", text: "+500 clienti aiutati" },
-  { id: "focus", text: "Specializzato sui mutui" },
-  { id: "area", text: "Lombardia: Bergamo e Milano" },
+  { id: "clients", text: "Oltre 25 banche convenzionate" },
+  { id: "focus", text: "Specializzati in mutui e surroga" },
+  { id: "area", text: "Presidio a Inzago (Martesana, MI e BG)" },
 ] as const;
 
 export const FINAL_CTA = {
   headline: "Prenota la tua consulenza mutui gratuita",
   subheadline:
-    "Scegli il giorno e l'orario che preferisci. Ti richiamo senza impegno per capire come aiutarti.",
+    "Scegli il giorno e l'orario che preferisci. Ci incontriamo di persona nel nostro ufficio a Inzago o per una prima valutazione telefonica senza impegno.",
   cta: "Scegli data e ora",
 } as const;
 
 export const TRUST_STATS = [
-  { value: "+500", label: "Clienti aiutati" },
-  { value: "130+", label: "Convenzioni" },
-  { value: "BG · MI", label: "Bergamo e Milano" },
-  { value: "0€", label: "Prima consulenza senza impegno" },
+  { value: "25+", label: "Banche convenzionate" },
+  { value: "100%", label: "Consulenza gratuita" },
+  { value: "Inzago", label: "Presidio territoriale" },
+  { value: "0€", label: "Analisi di prefattibilità" },
 ] as const;

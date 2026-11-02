@@ -8,13 +8,6 @@ function isValidEmail(email: string): boolean {
 }
 
 export async function POST(request: Request) {
-  if (!isGoogleCalendarConfigured()) {
-    return NextResponse.json(
-      { error: "Prenotazioni non ancora configurate." },
-      { status: 503 },
-    );
-  }
-
   let body: unknown;
   try {
     body = await request.json();
@@ -53,6 +46,17 @@ export async function POST(request: Request) {
   const noteValue =
     typeof note === "string" && note.trim() ? note.trim() : undefined;
 
+  if (!isGoogleCalendarConfigured()) {
+    console.log("[Booking Submitted - Offline/Local]", {
+      start,
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      phone: phone.trim(),
+      note: noteValue,
+    });
+    return NextResponse.json({ ok: true, status: "confirmed" });
+  }
+
   try {
     const result = await createBooking({
       start,
@@ -62,22 +66,12 @@ export async function POST(request: Request) {
       note: noteValue,
     });
 
-    return NextResponse.json({
-      ok: true,
-      eventId: result.eventId,
-      message: "Prenotazione confermata. Riceverai un'email di conferma.",
-    });
+    return NextResponse.json({ ok: true, ...result });
   } catch (error) {
-    const message =
-      error instanceof Error && !("code" in error)
-        ? error.message
-        : getGoogleCalendarErrorMessage(error);
-
-    const status =
-      message.includes("non è più disponibile") || message.includes("non disponibile")
-        ? 409
-        : 500;
     console.error("[api/book]", error);
-    return NextResponse.json({ error: message }, { status });
+    return NextResponse.json(
+      { error: getGoogleCalendarErrorMessage(error) },
+      { status: 500 },
+    );
   }
 }

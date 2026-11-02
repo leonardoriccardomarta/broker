@@ -19,13 +19,16 @@ const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: "Consulente Creditizio Mutui | Bergamo e Milano",
+  title: "Euroansa — Ufficio di Inzago | Consulenza Mutui e Credito",
   description:
-    "Consulente creditizio per mutui in Lombardia, provincia di Bergamo e Milano. Confronto tra istituti convenzionati. Prima consulenza gratuita.",
+    "Consulenza mutui a Inzago con Filippo Carriero e Marco Gorla, Mediatori Creditizi (Euroansa S.p.A. - OAM M191). Confronto gratuito tra oltre 25 banche convenzionate.",
   keywords: [
-    "mutui Bergamo",
-    "mutui Milano",
-    "consulente creditizio",
+    "Euroansa Inzago",
+    "Euroansa",
+    "mutui Inzago",
+    "Filippo Carriero",
+    "Marco Gorla",
+    "mediatore creditizio Inzago",
     "mutuo prima casa",
     "surroga mutuo",
     "Lombardia",
@@ -36,12 +39,12 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Consulente Creditizio Mutui | Bergamo e Milano",
+    title: "Euroansa — Ufficio di Inzago | Consulenza Mutui e Credito",
     description:
-      "Trova il mutuo più adatto al tuo profilo in Lombardia. Consulenza gratuita in provincia di Bergamo e Milano.",
+      "Consulenza mutui a Inzago con Filippo Carriero e Marco Gorla, Mediatori Creditizi (Euroansa S.p.A.). Confronto gratuito tra oltre 25 banche.",
     type: "website",
     locale: "it_IT",
-    siteName: SITE.title,
+    siteName: SITE.name,
     url: "/",
   },
   robots: {

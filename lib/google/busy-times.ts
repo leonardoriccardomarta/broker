@@ -7,6 +7,29 @@ export type BusyBlock = {
   end: string;
 };
 
+export function getAggregatedCalendarIds(): string[] {
+  const ids: string[] = [];
+
+  const primary = process.env.GOOGLE_CALENDAR_ID?.trim();
+  const filippo = process.env.GOOGLE_CALENDAR_ID_FILIPPO?.trim();
+  const marco = process.env.GOOGLE_CALENDAR_ID_MARCO?.trim();
+  const commaSeparated = process.env.GOOGLE_CALENDAR_IDS?.trim();
+
+  if (primary) ids.push(primary);
+  if (filippo) ids.push(filippo);
+  if (marco) ids.push(marco);
+
+  if (commaSeparated) {
+    const split = commaSeparated
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+    ids.push(...split);
+  }
+
+  return Array.from(new Set(ids.filter(Boolean)));
+}
+
 function normalizeEventBlock(start: string, end: string): BusyBlock {
   const { timezone } = bookingConfig;
 
@@ -51,6 +74,61 @@ export async function getBusyBlocks(
   }
 
   return blocks;
+}
+
+/**
+ * Queries freebusy across multiple calendar IDs simultaneously (Euroansa Inzago, Filippo, Marco)
+ * and flattens/merges all busy intervals into a single unified array.
+ */
+export async function getMultiCalendarBusyBlocks(
+  calendar: calendar_v3.Calendar,
+  calendarIds: string[],
+  timeMin: string,
+  timeMax: string,
+): Promise<BusyBlock[]> {
+  if (calendarIds.length === 0) return [];
+
+  try {
+    const response = await calendar.freebusy.query({
+      requestBody: {
+        timeMin,
+        timeMax,
+        items: calendarIds.map((id) => ({ id })),
+      },
+    });
+
+    const busyBlocks: BusyBlock[] = [];
+    const calendarsData = response.data.calendars ?? {};
+
+    for (const calId of Object.keys(calendarsData)) {
+      const cal = calendarsData[calId];
+      if (cal?.busy && Array.isArray(cal.busy)) {
+        for (const busy of cal.busy) {
+          if (busy.start && busy.end) {
+            busyBlocks.push(normalizeEventBlock(busy.start, busy.end));
+          }
+        }
+      }
+    }
+
+    return busyBlocks;
+  } catch (err) {
+    console.warn(
+      "[freebusy.query error, falling back to events.list per calendar]:",
+      err,
+    );
+
+    const fallbackBlocks: BusyBlock[] = [];
+    for (const id of calendarIds) {
+      try {
+        const blocks = await getBusyBlocks(calendar, id, timeMin, timeMax);
+        fallbackBlocks.push(...blocks);
+      } catch (e) {
+        console.warn(`[events.list fallback failed for calendar ${id}]:`, e);
+      }
+    }
+    return fallbackBlocks;
+  }
 }
 
 export async function verifyCalendarAccess(

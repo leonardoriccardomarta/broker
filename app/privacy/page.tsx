@@ -3,7 +3,6 @@ import Link from "next/link";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { SITE } from "@/lib/constants";
 import { getContactLinks } from "@/lib/contact";
-import { getSiteOrigin } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Informativa Privacy",
@@ -18,14 +17,15 @@ export const metadata: Metadata = {
   },
 };
 
-function getPrivacyEmail(): string | null {
-  return process.env.PRIVACY_CONTACT_EMAIL?.trim() ?? null;
+function getPrivacyEmail(): string {
+  return (
+    process.env.PRIVACY_CONTACT_EMAIL?.trim() || "info.inzago@euroansa.it"
+  );
 }
 
 export default function PrivacyPage() {
   const contact = getContactLinks();
   const privacyEmail = getPrivacyEmail();
-  const siteOrigin = getSiteOrigin();
 
   return (
     <div className="bg-white pt-28 pb-16 md:pt-36 md:pb-24">
@@ -136,17 +136,15 @@ export default function PrivacyPage() {
                 Per richieste relative alla privacy puoi contattare {SITE.name}:
               </p>
               <ul className="mt-3 space-y-1">
-                {privacyEmail ? (
-                  <li>
-                    Email:{" "}
-                    <a
-                      href={`mailto:${privacyEmail}`}
-                      className="font-medium text-primary hover:underline"
-                    >
-                      {privacyEmail}
-                    </a>
-                  </li>
-                ) : null}
+                <li>
+                  Email:{" "}
+                  <a
+                    href={`mailto:${privacyEmail}`}
+                    className="font-medium text-primary hover:underline"
+                  >
+                    {privacyEmail}
+                  </a>
+                </li>
                 {contact ? (
                   <li>
                     Telefono:{" "}
@@ -154,19 +152,10 @@ export default function PrivacyPage() {
                       href={contact.telHref}
                       className="font-medium text-primary hover:underline"
                     >
-                      {contact.telHref.replace("tel:", "")}
+                      {contact.phoneDisplay || contact.telHref.replace("tel:", "")}
                     </a>
                   </li>
                 ) : null}
-                <li>
-                  Sito:{" "}
-                  <a
-                    href={siteOrigin}
-                    className="font-medium text-primary hover:underline"
-                  >
-                    {siteOrigin}
-                  </a>
-                </li>
               </ul>
             </section>
           </div>

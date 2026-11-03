@@ -5,8 +5,8 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { REVIEWS, SECTION_IDS } from "@/lib/constants";
 
 export function LocalReviews() {
-  // Duplicate reviews array for seamless continuous infinite marquee
-  const duplicatedReviews = [...REVIEWS, ...REVIEWS];
+  // Render list twice for a true seamless infinite loop
+  const doubleReviews = [...REVIEWS, ...REVIEWS];
 
   return (
     <section id={SECTION_IDS.recensioni} className="py-16 md:py-24 bg-slate-50/70 border-b border-slate-200/80 overflow-hidden">
@@ -20,17 +20,17 @@ export function LocalReviews() {
         </FadeIn>
       </SectionContainer>
 
-      {/* Animated Scrolling Carousel / Marquee */}
+      {/* Seamless Infinite Continuous Marquee */}
       <div className="mt-10 relative w-full overflow-hidden">
-        {/* Soft gradient masks on left and right for seamless edge fade */}
+        {/* Soft edge gradient masks */}
         <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-20 bg-gradient-to-r from-slate-50/90 to-transparent z-10" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-20 bg-gradient-to-l from-slate-50/90 to-transparent z-10" />
 
-        <div className="animate-marquee flex gap-5 px-4 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          {duplicatedReviews.map((review, index) => (
+        <div className="animate-marquee-infinite py-2">
+          {doubleReviews.map((review, index) => (
             <article
               key={`${review.town}-${index}`}
-              className="w-[290px] sm:w-[330px] shrink-0 flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-soft transition-all duration-200 hover:border-primary/40 hover:shadow-card"
+              className="w-[290px] sm:w-[330px] shrink-0 mr-5 flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-soft transition-all duration-200 hover:border-primary/40 hover:shadow-card"
             >
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-slate-100">

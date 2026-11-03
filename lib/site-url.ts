@@ -1,4 +1,4 @@
-const FALLBACK_SITE_URL = "https://filippocarrieromutui.it";
+const FALLBACK_SITE_URL = "https://euroansainzago.it";
 
 export function getSiteUrl(): URL {
   const raw =

@@ -139,6 +139,9 @@ export function isGoogleCalendarConfigured(): boolean {
   return Boolean(
     process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim() &&
       process.env.GOOGLE_PRIVATE_KEY?.trim() &&
-      process.env.GOOGLE_CALENDAR_ID?.trim(),
+      (process.env.GOOGLE_CALENDAR_ID?.trim() ||
+        process.env.GOOGLE_CALENDAR_ID_FILIPPO?.trim() ||
+        process.env.GOOGLE_CALENDAR_ID_MARCO?.trim() ||
+        process.env.GOOGLE_CALENDAR_IDS?.trim()),
   );
 }

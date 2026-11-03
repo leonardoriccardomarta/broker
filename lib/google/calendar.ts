@@ -7,16 +7,11 @@ import {
   slotsOverlap,
   type TimeSlot,
 } from "@/lib/booking/slots";
-import { getBusyBlocks } from "@/lib/google/busy-times";
+import {
+  getAggregatedCalendarIds,
+  getMultiCalendarBusyBlocks,
+} from "@/lib/google/busy-times";
 import { getAuthorizedCalendarClient } from "@/lib/google/auth";
-
-function getCalendarId(): string {
-  const calendarId = process.env.GOOGLE_CALENDAR_ID?.trim();
-  if (!calendarId) {
-    throw new Error("GOOGLE_CALENDAR_ID mancante");
-  }
-  return calendarId;
-}
 
 export async function getAvailableSlots(date: string): Promise<TimeSlot[]> {
   if (!isValidBookingDate(date)) return [];
@@ -24,8 +19,13 @@ export async function getAvailableSlots(date: string): Promise<TimeSlot[]> {
   const slots = generateSlotsForDate(date);
   if (slots.length === 0) return [];
 
+  const calendarIds = getAggregatedCalendarIds();
+  if (calendarIds.length === 0) {
+    // If no calendars are configured, return default available slots
+    return slots;
+  }
+
   const calendar = await getAuthorizedCalendarClient();
-  const calendarId = getCalendarId();
 
   const { timezone } = bookingConfig;
   const timeMin = fromZonedTime(`${date}T00:00:00`, timezone).toISOString();
@@ -34,8 +34,15 @@ export async function getAvailableSlots(date: string): Promise<TimeSlot[]> {
     1,
   ).toISOString();
 
-  const busyBlocks = await getBusyBlocks(calendar, calendarId, timeMin, timeMax);
+  // Query all 3 calendars (Euroansa Inzago, Filippo, Marco) simultaneously
+  const busyBlocks = await getMultiCalendarBusyBlocks(
+    calendar,
+    calendarIds,
+    timeMin,
+    timeMax,
+  );
 
+  // If a slot is occupied in ANY of the calendars, mark it unavailable
   return slots.filter((slot) => {
     const slotStart = new Date(slot.start);
     const slotEnd = new Date(slot.end);
@@ -86,6 +93,13 @@ export async function createBooking(
   );
 
   const calendar = await getAuthorizedCalendarClient();
+  const calendarIds = getAggregatedCalendarIds();
+  const primaryCalendarId =
+    process.env.GOOGLE_CALENDAR_ID?.trim() || calendarIds[0];
+
+  if (!primaryCalendarId) {
+    throw new Error("GOOGLE_CALENDAR_ID mancante per la registrazione.");
+  }
 
   const description = [
     `Cliente: ${name}`,
@@ -93,15 +107,30 @@ export async function createBooking(
     `Email: ${email}`,
     note ? `Note: ${note}` : null,
     "",
-    "Prenotazione dal sito web.",
+    "Prenotazione consulenza mutui dal sito web (Ufficio Euroansa di Inzago).",
   ]
     .filter(Boolean)
     .join("\n");
 
+  const attendees: { email: string; displayName?: string }[] = [];
+  if (email?.includes("@")) {
+    attendees.push({ email, displayName: name });
+  }
+
+  // Invite both advisors if their calendar ID is an email address
+  const filippoId = process.env.GOOGLE_CALENDAR_ID_FILIPPO?.trim();
+  const marcoId = process.env.GOOGLE_CALENDAR_ID_MARCO?.trim();
+  if (filippoId && filippoId.includes("@") && filippoId !== primaryCalendarId) {
+    attendees.push({ email: filippoId, displayName: "Filippo Carriero" });
+  }
+  if (marcoId && marcoId.includes("@") && marcoId !== primaryCalendarId) {
+    attendees.push({ email: marcoId, displayName: "Marco Gorla" });
+  }
+
   const event = await calendar.events.insert({
-    calendarId: getCalendarId(),
+    calendarId: primaryCalendarId,
     requestBody: {
-      summary: `Consulenza - ${name}`,
+      summary: `Consulenza Mutuo: ${name}`,
       description,
       start: {
         dateTime: startDate.toISOString(),
@@ -111,6 +140,7 @@ export async function createBooking(
         dateTime: endDate.toISOString(),
         timeZone: bookingConfig.timezone,
       },
+      attendees: attendees.length > 0 ? attendees : undefined,
       reminders: {
         useDefault: true,
       },

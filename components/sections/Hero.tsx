@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MessageCircle, Calendar, Phone, CheckCircle2, ShieldCheck } from "lucide-react";
+import { MessageCircle, Calendar, Phone, CheckCircle2, Building2 } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { Button } from "@/components/ui/Button";
@@ -13,7 +13,7 @@ export function Hero() {
     <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/60 pt-24 pb-16 md:pt-32 md:pb-24 border-b border-slate-200/80">
       <SectionContainer>
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
-          {/* Left Column: Ads Headline & Conversion */}
+          {/* Left Column: Direct High-Converting Copy */}
           <FadeIn className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-1 shadow-soft">
               <span className="flex h-2 w-2 rounded-full bg-primary" />
@@ -35,7 +35,7 @@ export function Hero() {
               {HERO.badges.map((badge) => (
                 <div
                   key={badge}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-1 shadow-soft"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 shadow-soft"
                 >
                   <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
                   <span>{badge}</span>
@@ -78,33 +78,33 @@ export function Hero() {
             </div>
 
             <p className="mt-4 text-xs text-slate-500">
-              Filippo Carriero &amp; Marco Gorla · Mediatori Creditizi (Euroansa S.p.A. - OAM M191)
+              Filippo Carriero e Marco Gorla · Mediatori Creditizi (Euroansa S.p.A. · OAM M191)
             </p>
           </FadeIn>
 
-          {/* Right Column: Realistic, authentic Italian family home & keys photo */}
+          {/* Right Column: Authentic, tasteful photo of real Italian residential building */}
           <FadeIn delay={80} className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-card">
                 <div className="relative h-64 sm:h-80 w-full overflow-hidden">
                   <Image
-                    src="/images/photos/hero-keys.jpg"
-                    alt="Acquisto casa e chiavi dell'immobile a Inzago"
+                    src="/images/photos/italian-family-home.jpg"
+                    alt="Casa residenziale e appartamenti per famiglie a Inzago"
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 480px"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-midnight/65 via-midnight/15 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-midnight/70 via-midnight/20 to-transparent" />
 
                   <div className="absolute top-4 left-4 rounded-lg bg-midnight/85 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-white shadow-sm flex items-center gap-1.5">
-                    <ShieldCheck className="h-3.5 w-3.5 text-sky-400" />
-                    <span>Inzago · Martesana</span>
+                    <Building2 className="h-3.5 w-3.5 text-sky-400" />
+                    <span>Inzago e Martesana</span>
                   </div>
 
                   <div className="absolute bottom-4 left-4 right-4 text-white">
                     <p className="text-xs uppercase tracking-wider text-slate-200 font-semibold">
-                      Ufficio di Inzago (MI)
+                      Ufficio di Inzago
                     </p>
                     <p className="text-base font-bold leading-tight">
                       La serenità del mutuo giusto per la tua casa

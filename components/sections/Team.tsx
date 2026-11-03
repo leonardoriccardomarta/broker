@@ -14,7 +14,7 @@ export function Team() {
       <SectionContainer>
         <FadeIn>
           <SectionHeading
-            eyebrow="Presidio Territoriale di Inzago"
+            eyebrow="I Nostri Mediatori"
             title="I Tuoi Consulenti sul Territorio"
             subtitle="I nostri Mediatori Creditizi a Inzago: contattaci direttamente o prenota un colloquio senza impegno."
           />
@@ -30,7 +30,7 @@ export function Team() {
                     <div className="relative h-20 w-20 sm:h-24 sm:w-24 shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-sm">
                       <Image
                         src={member.photo}
-                        alt={`${member.name} — ${member.role}`}
+                        alt={`${member.name} - ${member.role}`}
                         fill
                         sizes="96px"
                         className="object-cover object-top"

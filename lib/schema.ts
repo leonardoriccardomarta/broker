@@ -1,4 +1,4 @@
-import { FAQ_ITEMS, SITE } from "@/lib/constants";
+import { FAQS, SITE } from "@/lib/constants";
 import { getContactLinks } from "@/lib/contact";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -27,9 +27,9 @@ export function getStructuredData() {
     "@id": `${siteUrl}#business`,
     name: `${SITE.name} - Consulenza Mutui`,
     description:
-      "Consulenza gratuita su mutui in Lombardia, provincia di Bergamo e Milano. Confronto tra istituti convenzionati.",
+      "Consulenza gratuita su mutui in Lombardia, provincia di Bergamo e Milano. Confronto tra oltre 25 banche convenzionate.",
     url: siteUrl,
-    image: `${getSiteUrl().origin}/images/photos/hero-keys.jpg`,
+    image: `${getSiteUrl().origin}/images/photos/italian-family-home.jpg`,
     areaServed: [
       {
         "@type": "AdministrativeArea",
@@ -37,11 +37,15 @@ export function getStructuredData() {
       },
       {
         "@type": "City",
-        name: "Bergamo",
+        name: "Inzago",
       },
       {
         "@type": "City",
         name: "Milano",
+      },
+      {
+        "@type": "City",
+        name: "Bergamo",
       },
     ],
     employee: { "@id": `${siteUrl}#person` },
@@ -62,7 +66,7 @@ export function getStructuredData() {
   const faqPage = {
     "@type": "FAQPage",
     "@id": `${siteUrl}#faq`,
-    mainEntity: FAQ_ITEMS.map((item) => ({
+    mainEntity: FAQS.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {

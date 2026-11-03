@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "Euroansa — Ufficio di Inzago",
+  name: "Euroansa Ufficio di Inzago",
   title: "Consulenza Mutui e Mediazione Creditizia",
   legalLine:
     "Euroansa S.p.A. — Società di mediazione creditizia iscritta all'elenco OAM al n. M191.",
@@ -11,6 +11,10 @@ export const SITE = {
 export const SECTION_IDS = {
   team: "team",
   servizi: "servizi",
+  situazioni: "situazioni",
+  comeFunziona: "come-lavoriamo",
+  recensioni: "recensioni",
+  faq: "faq",
   prenota: "prenota",
 } as const;
 
@@ -19,14 +23,13 @@ export const PRIVACY_PATH = "/privacy" as const;
 
 export const HERO = {
   eyebrow: "Euroansa S.p.A. · Ufficio di Inzago",
-  headline:
-    "Consulenza Mutui a Inzago — Troviamo il mutuo migliore tra oltre 25 banche",
+  headline: "Consulenza Mutui a Inzago: troviamo il mutuo migliore tra oltre 25 banche",
   subheadline:
-    "Confronto gratuito e indipendente delle offerte bancarie, analisi di prefattibilità e assistenza dedicata fino al rogito.",
+    "Confronto gratuito e indipendente delle offerte bancarie, analisi di prefattibilità immediata e assistenza dedicata fino al rogito.",
   badges: [
     "Oltre 25 banche partner",
     "Consulenza 100% Gratuita",
-    "Presidio sul territorio di Inzago",
+    "Ufficio a Inzago (MI)",
   ],
   bookingCta: "Prenota Consulenza Gratuita",
   whatsappCta: "Scrivici su WhatsApp",
@@ -82,23 +85,117 @@ export const SERVICES = [
   },
 ] as const;
 
+export const PAIN_POINTS = [
+  {
+    id: "rifiuto",
+    title: "Rifiuto in banca",
+    description:
+      "Una risposta negativa non preclude altre strade. Analizziamo i motivi e troviamo l'istituto compatibile con il tuo profilo reddituale.",
+  },
+  {
+    id: "tassi",
+    title: "Tassi e condizioni poco chiare",
+    description:
+      "Orientarsi tra fisso, variabile, spese accessorie e promozioni è complesso. Confrontiamo oltre 25 banche per te con la massima trasparenza.",
+  },
+  {
+    id: "burocrazia",
+    title: "Burocrazia e tempi lunghi",
+    description:
+      "Gestiamo l'intera documentazione, i rapporti con i periti e i contatti con la filiale fino al rogito notarile, evitandoti inutili attese.",
+  },
+] as const;
+
+export const PROCESS_STEPS = [
+  {
+    number: "1",
+    title: "Prenotazione online",
+    description: "Scegli giorno e ora direttamente nel calendario qui sotto, in meno di un minuto.",
+  },
+  {
+    number: "2",
+    title: "Analisi di fattibilità",
+    description: "Consulenza gratuita per valutare la rata ideale e la capienza reddituale del nucleo.",
+  },
+  {
+    number: "3",
+    title: "Confronto offerte",
+    description: "Presentiamo le migliori soluzioni sul mercato selezionate tra oltre 25 banche convenzionate.",
+  },
+  {
+    number: "4",
+    title: "Delibera e rogito",
+    description: "Ti affianchiamo passo dopo passo fino alla delibera definitiva e alla firma dal notaio.",
+  },
+] as const;
+
+export const REVIEWS = [
+  {
+    initials: "M.R.",
+    name: "Marco R.",
+    town: "Inzago",
+    text: "Avevamo una situazione particolare per il nostro primo mutuo. Ci hanno guidato con estrema chiarezza e abbiamo ottenuto la delibera in tempi rapidi.",
+    service: "Mutuo Prima Casa",
+  },
+  {
+    initials: "A.B.",
+    name: "Andrea B.",
+    town: "Cassano d'Adda",
+    text: "Grazie al confronto tra banche abbiamo abbassato la rata mensile di oltre 140€ con la surroga a costo zero. Servizio serio e impeccabile.",
+    service: "Surroga Mutuo",
+  },
+  {
+    initials: "S.T.",
+    name: "Silvia T.",
+    town: "Gorgonzola",
+    text: "Consulenza chiara, zero perdite di tempo e risposte sempre puntuali anche su WhatsApp. Consigliatissimi per chi acquista casa in Martesana.",
+    service: "Mutuo Acquisto",
+  },
+  {
+    initials: "P.M.",
+    name: "Paolo M.",
+    town: "Treviglio",
+    text: "Consolidamento prestiti eseguito con precisione: adesso abbiamo una sola rata sostenibile al posto di tre finanziamenti separati.",
+    service: "Consolidamento Debiti",
+  },
+  {
+    initials: "E.C.",
+    name: "Elena C.",
+    town: "Milano",
+    text: "Hanno individuato l'istituto perfetto per le nostre agevolazioni under 36 con garanzia CONSAP. Assistenza preziosa fino al rogito.",
+    service: "Agevolazioni Under 36",
+  },
+] as const;
+
+export const FAQS = [
+  {
+    id: "costo",
+    question: "La prima consulenza ha un costo?",
+    answer:
+      "No, la prima consulenza e l'analisi di prefattibilità sono 100% gratuite e senza alcun impegno da parte tua.",
+  },
+  {
+    id: "tempi",
+    question: "Quanto tempo serve per ottenere la delibera del mutuo?",
+    answer:
+      "I tempi variano in base alla banca scelta e alla completezza dei documenti, generalmente tra 2 e 4 settimane. Monitoriamo costantemente la pratica per ridurre al minimo i tempi d'attesa.",
+  },
+  {
+    id: "documenti",
+    question: "Quali documenti servono per iniziare l'analisi?",
+    answer:
+      "Bastano i documenti d'identità, le ultime 3 buste paga (o modello Unico per autonomi) e, se già individuato, la scheda o la proposta dell'immobile che desideri acquistare.",
+  },
+  {
+    id: "under36",
+    question: "Posso ottenere un mutuo al 100% o agevolato under 36?",
+    answer:
+      "Sì, verifichiamo subito l'accesso al Fondo di Garanzia Prima Casa (CONSAP) e a tutte le convenzioni bancarie dedicate ai giovani under 36 con tassi agevolati.",
+  },
+] as const;
+
 export const FINAL_CTA = {
   headline: "Prenota la tua consulenza mutui gratuita",
   subheadline:
     "Scegli giorno e orario nel calendario per un incontro di persona nel nostro ufficio a Inzago o per una prima consulenza telefonica senza impegno.",
 } as const;
-
-export const FAQ_ITEMS = [
-  {
-    id: "costo",
-    question: "La prima consulenza ha un costo?",
-    answer:
-      "No, la prima consulenza e l'analisi di fattibilità sono totalmente gratuite e senza impegno.",
-  },
-  {
-    id: "documenti",
-    question: "Quali documenti servono per iniziare?",
-    answer:
-      "Bastano i documenti di identità, le ultime buste paga o il modello unico e le informazioni sull'immobile che desideri acquistare.",
-  },
-] as const;

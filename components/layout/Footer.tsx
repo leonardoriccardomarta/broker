@@ -39,7 +39,7 @@ export function Footer() {
             Filippo Carriero e Marco Gorla svolgono l&apos;attività di mediazione creditizia per conto di Euroansa S.p.A., società iscritta all&apos;elenco OAM al n. M191 e soggetta alla vigilanza dell&apos;Organismo degli Agenti e Mediatori. Messaggio pubblicitario con finalità promozionale. Prima della conclusione del contratto, prendere visione delle Informazioni Generali sul Credito Immobiliare e dei Fogli Informativi disponibili presso gli istituti eroganti.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-slate-800/80 text-[11px] text-slate-500">
-            <p>© {new Date().getFullYear()} Euroansa — Ufficio di Inzago. Tutti i diritti riservati.</p>
+            <p>© {new Date().getFullYear()} Euroansa · Ufficio di Inzago. Tutti i diritti riservati.</p>
             <Link
               href={PRIVACY_PATH}
               className="text-slate-400 hover:text-white underline underline-offset-2 transition-colors"

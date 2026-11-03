@@ -190,10 +190,10 @@ export function BookingForm() {
       </div>
 
       {step === "datetime" && (
-        <div className="space-y-5 sm:space-y-6">
-          <div className="grid gap-5 sm:gap-6 lg:grid-cols-2">
+        <div className="space-y-6">
+          <div className="grid gap-6 md:grid-cols-2 items-start">
             <div>
-              <p className="mb-3 text-sm font-medium text-midnight">Scegli il giorno</p>
+              <p className="mb-2.5 text-xs font-bold uppercase tracking-wider text-midnight">1. Scegli il giorno</p>
               <MiniCalendar
                 selectedDate={selectedDate}
                 onSelect={setDate}
@@ -203,24 +203,24 @@ export function BookingForm() {
             </div>
 
             <div>
-              <p className="mb-1 text-sm font-medium text-midnight">Orari disponibili</p>
+              <p className="mb-1 text-xs font-bold uppercase tracking-wider text-midnight">2. Orari disponibili</p>
               {selectedDateLabel && (
-                <p className="mb-3 text-sm capitalize text-black/50">
+                <p className="mb-2.5 text-xs capitalize text-slate-500 font-medium">
                   {selectedDateLabel}
                 </p>
               )}
 
               {loadingSlots ? (
-                <div className="flex min-h-[220px] items-center justify-center gap-2 rounded-2xl bg-slate-50 text-black/50">
-                  <Loader2 className="h-5 w-5 animate-spin" />
+                <div className="flex min-h-[260px] items-center justify-center gap-2 rounded-2xl bg-slate-50 text-slate-500 text-sm">
+                  <Loader2 className="h-5 w-5 animate-spin text-primary" />
                   Caricamento orari...
                 </div>
               ) : slots.length === 0 ? (
-                <div className="flex min-h-[220px] items-center justify-center rounded-2xl bg-slate-50 px-4 text-center text-sm text-black/55">
+                <div className="flex min-h-[260px] items-center justify-center rounded-2xl bg-slate-50 px-4 text-center text-sm text-slate-500">
                   Nessun orario disponibile per questo giorno.
                 </div>
               ) : (
-                <div className="grid max-h-[280px] grid-cols-2 gap-2 overflow-y-auto pr-1 sm:grid-cols-3">
+                <div className="grid max-h-[270px] grid-cols-2 gap-2 overflow-y-auto pr-1">
                   {slots.map((slot) => {
                     const active = selectedSlot?.start === slot.start;
                     return (
@@ -228,7 +228,7 @@ export function BookingForm() {
                         key={slot.start}
                         type="button"
                         onClick={() => setSelectedSlot(slot)}
-                        className={`flex items-center justify-center gap-1.5 rounded-xl border px-3 py-3 text-sm font-semibold transition ${
+                        className={`flex items-center justify-center gap-1.5 rounded-xl border px-3 py-2.5 text-xs font-bold transition ${
                           active
                             ? "border-primary bg-primary text-white shadow-md shadow-primary/20"
                             : "border-slate-200 bg-white text-midnight hover:border-primary/40 hover:bg-primary/5"

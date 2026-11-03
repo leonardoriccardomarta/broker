@@ -19,9 +19,9 @@ const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
-  title: "Euroansa — Ufficio di Inzago | Consulenza Mutui e Credito",
+  title: "Euroansa: Ufficio di Inzago | Consulenza Mutui e Credito",
   description:
-    "Consulenza mutui a Inzago con Filippo Carriero e Marco Gorla, Mediatori Creditizi (Euroansa S.p.A. - OAM M191). Confronto gratuito tra oltre 25 banche convenzionate.",
+    "Consulenza mutui a Inzago con Filippo Carriero e Marco Gorla, Mediatori Creditizi (Euroansa S.p.A. · OAM M191). Confronto gratuito tra oltre 25 banche convenzionate.",
   keywords: [
     "Euroansa Inzago",
     "Euroansa",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Euroansa — Ufficio di Inzago | Consulenza Mutui e Credito",
+    title: "Euroansa: Ufficio di Inzago | Consulenza Mutui e Credito",
     description:
       "Consulenza mutui a Inzago con Filippo Carriero e Marco Gorla, Mediatori Creditizi (Euroansa S.p.A.). Confronto gratuito tra oltre 25 banche.",
     type: "website",

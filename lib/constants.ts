@@ -169,28 +169,34 @@ export const REVIEWS = [
 
 export const FAQS = [
   {
-    id: "costo",
-    question: "La prima consulenza ha un costo?",
+    id: "gratuita",
+    question: "La prima consulenza di fattibilità è davvero gratuita e senza impegno?",
     answer:
-      "No, la prima consulenza e l'analisi di prefattibilità sono 100% gratuite e senza alcun impegno da parte tua.",
+      "Sì, al 100%. Il primo colloquio conoscitivo e l'analisi di prefattibilità reddituale non comportano alcun costo né vincolo contrattuale. Serve a capire con certezza quanto la banca può concederti prima di fare proposte d'acquisto.",
   },
   {
-    id: "tempi",
-    question: "Quanto tempo serve per ottenere la delibera del mutuo?",
+    id: "tempi-fattibilita",
+    question: "Quanto tempo occorre per sapere se il mutuo è fattibile?",
     answer:
-      "I tempi variano in base alla banca scelta e alla completezza dei documenti, generalmente tra 2 e 4 settimane. Monitoriamo costantemente la pratica per ridurre al minimo i tempi d'attesa.",
+      "Grazie al nostro accesso diretto ai canali deliberanti di oltre 25 istituti bancari, siamo in grado di darti un riscontro di prefattibilità preliminare entro 24-48 ore dalla consegna dei documenti reddituali.",
   },
   {
-    id: "documenti",
-    question: "Quali documenti servono per iniziare l'analisi?",
+    id: "perche-euroansa",
+    question: "Perché conviene rivolgersi a Euroansa invece che andare direttamente in filiale?",
     answer:
-      "Bastano i documenti d'identità, le ultime 3 buste paga (o modello Unico per autonomi) e, se già individuato, la scheda o la proposta dell'immobile che desideri acquistare.",
+      "Una singola banca può proporti esclusivamente i propri prodotti. Come Mediatori Creditizi indipendenti, confrontiamo simultaneamente oltre 25 istituti bancari convenzionati per trovare il tasso (fisso, variabile, green) e le condizioni più vantaggiose per il tuo profilo, azzerando le code e gestendo noi tutta la burocrazia fino al rogito.",
   },
   {
-    id: "under36",
-    question: "Posso ottenere un mutuo al 100% o agevolato under 36?",
+    id: "under-36-consap",
+    question: "Posso ottenere un mutuo al 100% o con agevolazioni per giovani under 36?",
     answer:
-      "Sì, verifichiamo subito l'accesso al Fondo di Garanzia Prima Casa (CONSAP) e a tutte le convenzioni bancarie dedicate ai giovani under 36 con tassi agevolati.",
+      "Certamente. Monitoriamo costantemente le misure del Fondo Garanzia Prima Casa (CONSAP) e le convenzioni dedicate ai giovani under 36 e lavoratori atipici, individuando gli istituti che offrono copertura fino al 100% del valore dell'immobile.",
+  },
+  {
+    id: "rifiuto-banca",
+    question: "Cosa succede se ho già ricevuto un rifiuto da una banca?",
+    answer:
+      "Una bocciatura non preclude l'accesso al credito. Ogni istituto adotta parametri di calcolo della capacità reddituale differenti (rapporto rata/reddito, tipologia contrattuale). Analizziamo le motivazioni del rifiuto e riposizioniamo la pratica sulla banca idonea ai tuoi requisiti.",
   },
 ] as const;
 

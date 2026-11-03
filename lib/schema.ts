@@ -29,7 +29,7 @@ export function getStructuredData() {
     description:
       "Consulenza gratuita su mutui in Lombardia, provincia di Bergamo e Milano. Confronto tra oltre 25 banche convenzionate.",
     url: siteUrl,
-    image: `${getSiteUrl().origin}/images/photos/italian-family-home.jpg`,
+    image: `${getSiteUrl().origin}/images/photos/hero-keys.jpg`,
     areaServed: [
       {
         "@type": "AdministrativeArea",

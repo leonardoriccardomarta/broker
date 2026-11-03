@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MessageCircle, Calendar, Phone, CheckCircle2, Building2 } from "lucide-react";
+import { MessageCircle, Calendar, Phone, CheckCircle2, ShieldCheck } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { SectionContainer } from "@/components/ui/SectionContainer";
 import { Button } from "@/components/ui/Button";
@@ -30,7 +30,7 @@ export function Hero() {
               {HERO.subheadline}
             </p>
 
-            {/* Badges with clean icon treatment */}
+            {/* Badges Required */}
             <div className="mt-6 flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs font-medium text-slate-800">
               {HERO.badges.map((badge) => (
                 <div
@@ -82,23 +82,23 @@ export function Hero() {
             </p>
           </FadeIn>
 
-          {/* Right Column: Authentic, tasteful photo of real Italian residential building */}
+          {/* Right Column: Exact clean model house with keys from 6a22f90 */}
           <FadeIn delay={80} className="lg:col-span-5">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               <div className="relative overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-card">
                 <div className="relative h-64 sm:h-80 w-full overflow-hidden">
                   <Image
-                    src="/images/photos/italian-family-home.jpg"
-                    alt="Casa residenziale e appartamenti per famiglie a Inzago"
+                    src="/images/photos/hero-keys.jpg"
+                    alt="Acquisto casa e chiavi dell'immobile a Inzago"
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 480px"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-midnight/70 via-midnight/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-midnight/65 via-midnight/15 to-transparent" />
 
                   <div className="absolute top-4 left-4 rounded-lg bg-midnight/85 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-white shadow-sm flex items-center gap-1.5">
-                    <Building2 className="h-3.5 w-3.5 text-sky-400" />
+                    <ShieldCheck className="h-3.5 w-3.5 text-sky-400" />
                     <span>Inzago e Martesana</span>
                   </div>
 

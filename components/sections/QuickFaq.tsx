@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { FAQS, SECTION_IDS } from "@/lib/constants";
 
 export function QuickFaq() {
-  const [openId, setOpenId] = useState<string | null>("costo");
+  const [openId, setOpenId] = useState<string | null>("gratuita");
 
   const toggle = (id: string) => {
     setOpenId((prev) => (prev === id ? null : id));

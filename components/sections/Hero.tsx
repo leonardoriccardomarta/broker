@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { MessageCircle, Calendar, Phone, CheckCircle2, ShieldCheck } from "lucide-react";
 import { FadeIn } from "@/components/ui/FadeIn";
-import { SectionContainer } from "@/components/ui/SectionContainer";
 import { Button } from "@/components/ui/Button";
 import { BOOKING_HREF, HERO } from "@/lib/constants";
 import { getContactLinks } from "@/lib/contact";
@@ -11,8 +10,8 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/60 pt-24 pb-16 md:pt-32 md:pb-24 border-b border-slate-200/80">
-      <SectionContainer>
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
           {/* Left Column: Direct High-Converting Copy */}
           <FadeIn className="lg:col-span-7">
             <div className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-1 shadow-soft">
@@ -124,7 +123,7 @@ export function Hero() {
             </div>
           </FadeIn>
         </div>
-      </SectionContainer>
+      </div>
     </section>
   );
 }

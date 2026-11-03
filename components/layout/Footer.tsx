@@ -10,11 +10,11 @@ export function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-8 border-b border-slate-800">
           <Link href="/" className="inline-flex items-center gap-2.5">
             <Image
-              src="/images/logo/brand-icon.svg"
-              alt="Euroansa"
-              width={32}
-              height={32}
-              className="h-8 w-8 rounded-lg"
+              src="/logo-euroansa-inzago.png"
+              alt="Euroansa Ufficio di Inzago"
+              width={36}
+              height={36}
+              className="h-9 w-auto rounded-md object-contain"
             />
             <div>
               <p className="text-base font-bold text-white tracking-tight">Euroansa</p>

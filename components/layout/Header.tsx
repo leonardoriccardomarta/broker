@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Phone, Calendar, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { SectionContainer } from "@/components/ui/SectionContainer";
 import { BOOKING_HREF } from "@/lib/constants";
 import { getContactLinks } from "@/lib/contact";
 
@@ -13,15 +12,15 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/90 bg-white/95 py-3 shadow-soft backdrop-blur-md">
-      <SectionContainer className="flex items-center justify-between gap-3 sm:gap-4">
-        {/* Left: Logo Euroansa | Ufficio di Inzago */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 sm:gap-4">
+        {/* Left: Official Logo Euroansa | Ufficio di Inzago */}
         <Link href="/" className="flex items-center gap-2.5 sm:gap-3 shrink-0">
           <Image
-            src="/images/logo/brand-icon.svg"
-            alt="Euroansa"
-            width={38}
-            height={38}
-            className="h-9 w-9 shrink-0 rounded-lg shadow-sm"
+            src="/logo-euroansa-inzago.png"
+            alt="Euroansa Ufficio di Inzago"
+            width={160}
+            height={40}
+            className="h-9 w-auto rounded-md object-contain shadow-sm"
             priority
           />
           <div className="flex items-baseline gap-1.5 sm:gap-2">
@@ -30,7 +29,7 @@ export function Header() {
             </span>
             <span className="text-slate-300 font-light">|</span>
             <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-              Ufficio di Inzago
+              UFFICIO DI INZAGO
             </span>
           </div>
         </Link>
@@ -70,7 +69,7 @@ export function Header() {
             <span>Prenota Consulenza</span>
           </Button>
         </div>
-      </SectionContainer>
+      </div>
     </header>
   );
 }

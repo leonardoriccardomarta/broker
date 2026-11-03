@@ -52,8 +52,11 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/images/logo/brand-icon.svg",
-    apple: "/images/logo/brand-icon.svg",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/logo-euroansa-inzago.png", type: "image/png" },
+    ],
+    apple: "/logo-euroansa-inzago.png",
   },
 };
 
